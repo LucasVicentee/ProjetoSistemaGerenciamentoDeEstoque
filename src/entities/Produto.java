@@ -3,23 +3,23 @@ package entities;
 import java.util.Date;
 
 public class Produto {
-    private Integer id;
-    private String nome;
-    private double preco;
-    private int quantidade;
-    private Date data_fabricacao;
-    private String fabricante;
+    protected Integer id;
+    protected String nome;
+    protected double preco;
+    protected int quantidade;
+    protected Date dataFabricacao;
+    protected String fabricante;
 
     public Produto() {
 
     }
 
-    public Produto(Integer id, String nome, double preco, int quantidade, Date data_fabricacao, String fabricante) {
+    public Produto(Integer id, String nome, double preco, int quantidade, Date dataFabricacao, String fabricante) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
         this.quantidade = quantidade;
-        this.data_fabricacao = data_fabricacao;
+        this.dataFabricacao = dataFabricacao;
         this.fabricante = fabricante;
     }
 
@@ -55,12 +55,12 @@ public class Produto {
         this.quantidade = quantidade;
     }
 
-    public Date getData_fabricacao() {
-        return data_fabricacao;
+    public Date getDataFabricacao() {
+        return dataFabricacao;
     }
 
-    public void setData_fabricacao(Date data_fabricacao) {
-        this.data_fabricacao = data_fabricacao;
+    public void setDataFabricacao(Date dataFabricacao) {
+        this.dataFabricacao = dataFabricacao;
     }
 
     public String getFabricante() {
