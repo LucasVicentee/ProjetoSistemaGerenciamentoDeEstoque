@@ -22,6 +22,10 @@ public class ProdutoEletronico extends Produto{
         this.voltagem = voltagem;
     }
 
+    public ProdutoEletronico(Integer id) {
+        super(id);
+    }
+
     public int getGarantiaMeses() {
         return garantiaMeses;
     }

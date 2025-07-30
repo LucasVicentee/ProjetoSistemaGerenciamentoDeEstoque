@@ -14,6 +14,10 @@ public class Produto {
 
     }
 
+    public Produto(Integer id) {
+        this.id = id;
+    }
+
     public Produto(Integer id, String nome, double preco, int quantidade, Date dataFabricacao, String fabricante) {
         this.id = id;
         this.nome = nome;

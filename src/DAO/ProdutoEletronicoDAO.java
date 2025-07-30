@@ -46,4 +46,26 @@ public class ProdutoEletronicoDAO {
             e.printStackTrace();
         }
     }
+
+    public void excluirProdutoEletronico(int id) {
+        String sqlProdutoEletronico = "DELETE FROM produto_eletronico WHERE ID = ?";
+        String sqlProduto = "DELETE FROM produto WHERE ID = ?";
+
+        try {
+            Connection conn = Conexao.getConexao();
+            PreparedStatement psProdutoEletronico = conn.prepareStatement(sqlProdutoEletronico);
+            PreparedStatement psProduto = conn.prepareStatement(sqlProduto);
+
+            psProdutoEletronico.setInt(1, id);
+            psProdutoEletronico.executeUpdate();
+
+            psProduto.setInt(1, id);
+            psProduto.executeUpdate();
+
+            System.out.println("Produto Eletrônico excluído com sucesso.");
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
