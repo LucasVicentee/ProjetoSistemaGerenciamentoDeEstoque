@@ -16,6 +16,12 @@ public class ProdutoEletronico extends Produto{
         this.voltagem = voltagem;
     }
 
+    public ProdutoEletronico(String nome, double preco, int quantidade, Date dataFabricacao, String fabricante, int garantiaMeses, String voltagem) {
+        super(nome, preco, quantidade, dataFabricacao, fabricante);
+        this.garantiaMeses = garantiaMeses;
+        this.voltagem = voltagem;
+    }
+
     public int getGarantiaMeses() {
         return garantiaMeses;
     }

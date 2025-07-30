@@ -23,6 +23,14 @@ public class Produto {
         this.fabricante = fabricante;
     }
 
+    public Produto(String nome, double preco, int quantidade, Date dataFabricacao, String fabricante) {
+        this.nome = nome;
+        this.preco = preco;
+        this.quantidade = quantidade;
+        this.dataFabricacao = dataFabricacao;
+        this.fabricante = fabricante;
+    }
+
     public Integer getId() {
         return id;
     }
