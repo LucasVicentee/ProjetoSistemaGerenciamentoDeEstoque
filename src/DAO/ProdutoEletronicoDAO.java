@@ -1,5 +1,6 @@
 package DAO;
 
+import exceptions.ProdutoNaoEncontradoException;
 import connection.Conexao;
 import entities.ProdutoEletronico;
 
@@ -70,21 +71,22 @@ public class ProdutoEletronicoDAO {
 
                 //Caso o ID seja inválido o sistema não realizará a exclusão de nada
                 if (produtoExcluidoEletronico == 0 || produtExcluido == 0) {
-                    System.out.println("Nenhum produto com este ID foi encontrado.");
                     conn.rollback();
+                    throw new ProdutoNaoEncontradoException("Produto com ID " + id + " não encontrado.");
                 }
                 else {
                     //Quando o ID foi encontrado o sistema avisará e excluirá o produto do sistema
                     System.out.println("Produto Eletrônico excluído com sucesso.");
                     conn.commit();
                 }
-
-            } catch (SQLException e) {
+            }
+            catch (SQLException e) {
                 // Se der erro, faz rollback da transação
                 conn.rollback();
                 e.printStackTrace();
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -117,20 +119,19 @@ public class ProdutoEletronicoDAO {
                     System.out.println("ID: " + rs.getInt("id"));
                     System.out.println("Nome: " + rs.getString("nome"));
                     System.out.println("Preço: " + rs.getDouble("preco"));
-                    System.out.println("Quantidade: " + rs.getDouble("quantidade"));
+                    System.out.println("Quantidade: " + rs.getInt("quantidade"));
                     System.out.println("Data de fabricação: " + rs.getDate("data_fabricacao"));
                     System.out.println("Fabricante: " + rs.getString("fabricante"));
                     System.out.println("Garantia em meses: " + rs.getInt("garantia_meses"));
                     System.out.println("Voltagem: " + rs.getString("voltagem"));
-                } else { //Caso não for encontrado um ID correspondente com o que o usuário informou
-                    System.out.println("Nenhum produto foi encontrado com este ID.");
+                }
+                else { //Caso não for encontrado um ID correspondente com o que o usuário informou
+                    throw new ProdutoNaoEncontradoException("Produto com ID " + id + " não encontrado.");
                 }
 
-            } catch (SQLException e) {
-                e.printStackTrace();
             }
-
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             e.printStackTrace();
         }
     }
