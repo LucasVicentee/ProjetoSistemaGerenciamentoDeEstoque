@@ -39,6 +39,9 @@ public class ProdutoEletronicoDAO {
                 psEletronico.setInt(2, pe.getGarantiaMeses());
                 psEletronico.setString(3, pe.getVoltagem());
                 psEletronico.executeUpdate();
+
+                psProduto.close();
+                conn.close();
             }
 
             System.out.println("Produto eletrônico cadastrado com sucesso!");
@@ -62,7 +65,57 @@ public class ProdutoEletronicoDAO {
             psProduto.setInt(1, id);
             psProduto.executeUpdate();
 
+            psProdutoEletronico.close();
+            psProduto.close();
+            conn.close();
+
             System.out.println("Produto Eletrônico excluído com sucesso.");
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void buscarProdutoEletronicoPorID(int id) {
+        String sqlProdutoEletronico = "SELECT \n" +
+                "    p.id,\n" +
+                "    p.nome,\n" +
+                "    p.preco,\n" +
+                "    p.quantidade,\n" +
+                "    p.data_fabricacao,\n" +
+                "    p.fabricante,\n" +
+                "    pe.garantia_meses,\n" +
+                "    pe.voltagem\n" +
+                "FROM \n" +
+                "    produto p\n" +
+                "JOIN \n" +
+                "    produto_eletronico pe ON p.id = pe.id\n" +
+                "WHERE pe.id = ?";
+
+        try {
+            Connection conn = Conexao.getConexao();
+            PreparedStatement psProdutoEletronico = conn.prepareStatement(sqlProdutoEletronico);
+
+            psProdutoEletronico.setInt(1, id);
+            ResultSet rs = psProdutoEletronico.executeQuery();
+
+            if (rs.next()) {
+                System.out.println("Produto encontrado!");
+                System.out.println("ID: " + rs.getInt("id"));
+                System.out.println("Nome: " + rs.getString("nome"));
+                System.out.println("Preço: " + rs.getDouble("preco"));
+                System.out.println("Quantidade: " + rs.getDouble("quantidade"));
+                System.out.println("Data de fabricação: " + rs.getDate("data_fabricacao"));
+                System.out.println("Fabricante: " + rs.getString("fabricante"));
+                System.out.println("Garantia em meses: " + rs.getInt("garantia_meses"));
+                System.out.println("Voltagem: " + rs.getString("voltagem"));
+            }
+            else {
+                System.out.println("Nenhum produto foi encontrado.");
+            }
+            rs.close();
+            psProdutoEletronico.close();
+            conn.close();
         }
         catch (SQLException e) {
             e.printStackTrace();
