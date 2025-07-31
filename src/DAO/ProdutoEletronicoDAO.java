@@ -12,10 +12,9 @@ public class ProdutoEletronicoDAO {
         String sqlProduto = "INSERT INTO produto (nome, preco, quantidade, data_fabricacao, fabricante) VALUES (?, ?, ?, ?, ?)";
         String sqlEletronico = "INSERT INTO produto_eletronico (id, garantia_meses, voltagem) VALUES (?, ?, ?)";
 
-        try (
-                Connection conn = Conexao.getConexao();
-                PreparedStatement psProduto = conn.prepareStatement(sqlProduto, Statement.RETURN_GENERATED_KEYS)
-        ) {
+        try (Connection conn = Conexao.getConexao();
+             PreparedStatement psProduto = conn.prepareStatement(sqlProduto, Statement.RETURN_GENERATED_KEYS))
+        {
             // Inserir no produto
             psProduto.setString(1, pe.getNome());
             psProduto.setDouble(2, pe.getPreco());
@@ -25,23 +24,20 @@ public class ProdutoEletronicoDAO {
             psProduto.executeUpdate();
 
             // Obter o ID gerado
-            ResultSet rs = psProduto.getGeneratedKeys();
-            if (rs.next()) {
-                int idGerado = rs.getInt(1);
-                pe.setId(idGerado); // define o ID no objeto também
+            try (ResultSet rs = psProduto.getGeneratedKeys();) {
+                if (rs.next()) {
+                    int idGerado = rs.getInt(1);
+                    pe.setId(idGerado); // define o ID no objeto também
+                }
             }
-            rs.close();
 
             // Inserir no produto_eletronico
-            try (
-                PreparedStatement psEletronico = conn.prepareStatement(sqlEletronico)) {
+            try (PreparedStatement psEletronico = conn.prepareStatement(sqlEletronico))
+            {
                 psEletronico.setInt(1, pe.getId());
                 psEletronico.setInt(2, pe.getGarantiaMeses());
                 psEletronico.setString(3, pe.getVoltagem());
                 psEletronico.executeUpdate();
-
-                psProduto.close();
-                conn.close();
             }
 
             System.out.println("Produto eletrônico cadastrado com sucesso!");
@@ -54,24 +50,30 @@ public class ProdutoEletronicoDAO {
         String sqlProdutoEletronico = "DELETE FROM produto_eletronico WHERE ID = ?";
         String sqlProduto = "DELETE FROM produto WHERE ID = ?";
 
-        try {
-            Connection conn = Conexao.getConexao();
-            PreparedStatement psProdutoEletronico = conn.prepareStatement(sqlProdutoEletronico);
-            PreparedStatement psProduto = conn.prepareStatement(sqlProduto);
+        // Usando try-with-resources para abrir a conexão e garantir que será fechada automaticamente
+        try (Connection conn = Conexao.getConexao()) {
+            conn.setAutoCommit(false);
 
-            psProdutoEletronico.setInt(1, id);
-            psProdutoEletronico.executeUpdate();
+            // Usando try-with-resources para preparar as statements
+            try (PreparedStatement psProdutoEletronico = conn.prepareStatement(sqlProdutoEletronico);
+                 PreparedStatement psProduto = conn.prepareStatement(sqlProduto)) {
 
-            psProduto.setInt(1, id);
-            psProduto.executeUpdate();
+                psProdutoEletronico.setInt(1, id);
+                psProdutoEletronico.executeUpdate();
 
-            psProdutoEletronico.close();
-            psProduto.close();
-            conn.close();
+                psProduto.setInt(1, id);
+                psProduto.executeUpdate();
 
-            System.out.println("Produto Eletrônico excluído com sucesso.");
-        }
-        catch (SQLException e) {
+                // Commit se deu tudo certo
+                conn.commit();
+                System.out.println("Produto Eletrônico excluído com sucesso.");
+
+            } catch (SQLException e) {
+                // Se der erro, faz rollback da transação
+                conn.rollback();
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -92,32 +94,32 @@ public class ProdutoEletronicoDAO {
                 "    produto_eletronico pe ON p.id = pe.id\n" +
                 "WHERE pe.id = ?";
 
-        try {
-            Connection conn = Conexao.getConexao();
-            PreparedStatement psProdutoEletronico = conn.prepareStatement(sqlProdutoEletronico);
+        try (Connection conn = Conexao.getConexao();
+             PreparedStatement psProdutoEletronico = conn.prepareStatement(sqlProdutoEletronico)) {
 
             psProdutoEletronico.setInt(1, id);
-            ResultSet rs = psProdutoEletronico.executeQuery();
 
-            if (rs.next()) {
-                System.out.println("Produto encontrado!");
-                System.out.println("ID: " + rs.getInt("id"));
-                System.out.println("Nome: " + rs.getString("nome"));
-                System.out.println("Preço: " + rs.getDouble("preco"));
-                System.out.println("Quantidade: " + rs.getDouble("quantidade"));
-                System.out.println("Data de fabricação: " + rs.getDate("data_fabricacao"));
-                System.out.println("Fabricante: " + rs.getString("fabricante"));
-                System.out.println("Garantia em meses: " + rs.getInt("garantia_meses"));
-                System.out.println("Voltagem: " + rs.getString("voltagem"));
+            try (ResultSet rs = psProdutoEletronico.executeQuery()) {
+
+                if (rs.next()) {
+                    System.out.println("Produto encontrado!");
+                    System.out.println("ID: " + rs.getInt("id"));
+                    System.out.println("Nome: " + rs.getString("nome"));
+                    System.out.println("Preço: " + rs.getDouble("preco"));
+                    System.out.println("Quantidade: " + rs.getDouble("quantidade"));
+                    System.out.println("Data de fabricação: " + rs.getDate("data_fabricacao"));
+                    System.out.println("Fabricante: " + rs.getString("fabricante"));
+                    System.out.println("Garantia em meses: " + rs.getInt("garantia_meses"));
+                    System.out.println("Voltagem: " + rs.getString("voltagem"));
+                } else {
+                    System.out.println("Nenhum produto foi encontrado.");
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-            else {
-                System.out.println("Nenhum produto foi encontrado.");
-            }
-            rs.close();
-            psProdutoEletronico.close();
-            conn.close();
-        }
-        catch (SQLException e) {
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
