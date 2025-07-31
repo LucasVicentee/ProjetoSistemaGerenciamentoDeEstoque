@@ -12,8 +12,9 @@ public class ProdutoEletronicoDAO {
         String sqlProduto = "INSERT INTO produto (nome, preco, quantidade, data_fabricacao, fabricante) VALUES (?, ?, ?, ?, ?)";
         String sqlEletronico = "INSERT INTO produto_eletronico (id, garantia_meses, voltagem) VALUES (?, ?, ?)";
 
+        // Usando try-with-resources para abrir a conexão e garantir que será fechada automaticamente
         try (Connection conn = Conexao.getConexao();
-             PreparedStatement psProduto = conn.prepareStatement(sqlProduto, Statement.RETURN_GENERATED_KEYS))
+             PreparedStatement psProduto = conn.prepareStatement(sqlProduto, Statement.RETURN_GENERATED_KEYS)) //Statement.RETURN_GENERATED_KEYS Pega a chave primária criada
         {
             // Inserir no produto
             psProduto.setString(1, pe.getNome());
@@ -23,7 +24,7 @@ public class ProdutoEletronicoDAO {
             psProduto.setString(5, pe.getFabricante());
             psProduto.executeUpdate();
 
-            // Obter o ID gerado
+            // Obter o ID gerado do auto_increment do banco de dados
             try (ResultSet rs = psProduto.getGeneratedKeys();) {
                 if (rs.next()) {
                     int idGerado = rs.getInt(1);
@@ -31,7 +32,7 @@ public class ProdutoEletronicoDAO {
                 }
             }
 
-            // Inserir no produto_eletronico
+            // Inserir na tabela produto_eletronico
             try (PreparedStatement psEletronico = conn.prepareStatement(sqlEletronico))
             {
                 psEletronico.setInt(1, pe.getId());
@@ -64,9 +65,19 @@ public class ProdutoEletronicoDAO {
                 psProduto.setInt(1, id);
                 psProduto.executeUpdate();
 
-                // Commit se deu tudo certo
-                conn.commit();
-                System.out.println("Produto Eletrônico excluído com sucesso.");
+                int produtoExcluidoEletronico = psProdutoEletronico.executeUpdate();
+                int produtExcluido = psProduto.executeUpdate();
+
+                //Caso o ID seja inválido o sistema não realizará a exclusão de nada
+                if (produtoExcluidoEletronico == 0 || produtExcluido == 0) {
+                    System.out.println("Nenhum produto com este ID foi encontrado.");
+                    conn.rollback();
+                }
+                else {
+                    //Quando o ID foi encontrado o sistema avisará e excluirá o produto do sistema
+                    System.out.println("Produto Eletrônico excluído com sucesso.");
+                    conn.commit();
+                }
 
             } catch (SQLException e) {
                 // Se der erro, faz rollback da transação

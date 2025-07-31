@@ -87,6 +87,8 @@ public class Main {
                                 }
                             }
                             break;
+                        case 3:
+                            
                     }
             }
             System.out.println("Deseja continuar no menu de interação? (S/N): ");
