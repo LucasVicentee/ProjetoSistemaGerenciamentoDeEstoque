@@ -111,7 +111,7 @@ public class ProdutoEletronicoDAO {
             psProdutoEletronico.setInt(1, id);
 
             try (ResultSet rs = psProdutoEletronico.executeQuery()) {
-
+                //Valida os dados e mostra para o usuário já formatado e com o texto
                 if (rs.next()) {
                     System.out.println("Produto encontrado!");
                     System.out.println("ID: " + rs.getInt("id"));
@@ -122,8 +122,8 @@ public class ProdutoEletronicoDAO {
                     System.out.println("Fabricante: " + rs.getString("fabricante"));
                     System.out.println("Garantia em meses: " + rs.getInt("garantia_meses"));
                     System.out.println("Voltagem: " + rs.getString("voltagem"));
-                } else {
-                    System.out.println("Nenhum produto foi encontrado.");
+                } else { //Caso não for encontrado um ID correspondente com o que o usuário informou
+                    System.out.println("Nenhum produto foi encontrado com este ID.");
                 }
 
             } catch (SQLException e) {

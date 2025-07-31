@@ -87,8 +87,15 @@ public class Main {
                                 }
                             }
                             break;
-                        case 3:
-                            
+                        case 3: {
+                            System.out.println("Informe o ID (Identificador) do produto Eletrônico para buscar os dados: ");
+                            System.out.println("ID: ");
+                            int idProdELetronico = sc.nextInt();
+
+                            ProdutoEletronicoDAO prodEletroDAO = new ProdutoEletronicoDAO();
+                            prodEletroDAO.buscarProdutoEletronicoPorID(idProdELetronico);
+                        }
+                        break;
                     }
             }
             System.out.println("Deseja continuar no menu de interação? (S/N): ");
