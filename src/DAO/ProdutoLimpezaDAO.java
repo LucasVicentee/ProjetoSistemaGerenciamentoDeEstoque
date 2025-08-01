@@ -53,22 +53,21 @@ public class ProdutoLimpezaDAO {
 
     public void excluirProdutoLimpeza(int id) {
 
-        String sqlProduto = "DELETE * FROM produto WHERE ID = ?";
-        String sqlProdutoLimpeza = "DELETE * FROM produto_limpeza WHERE ID = ?";
+        String sqlProduto = "DELETE FROM produto WHERE ID = ?";
+        String sqlProdutoLimpeza = "DELETE FROM produto_limpeza WHERE ID = ?";
 
         try (Connection conn = Conexao.getConexao()) {
             conn.setAutoCommit(false);
+
             try (PreparedStatement psProdutoLimpeza = conn.prepareStatement(sqlProdutoLimpeza);
             PreparedStatement psProduto = conn.prepareStatement(sqlProduto)) {
 
                 psProdutoLimpeza.setInt(1, id);
-                psProdutoLimpeza.executeUpdate();
+                int produtoExcluidoLimpeza = psProdutoLimpeza.executeUpdate(); //Verificando a quantidade de linhas afetadas no banco de dados
 
                 psProduto.setInt(1, id);
-                psProduto.executeUpdate();
+                int produtoExcluido = psProduto.executeUpdate(); //Verificando a quantidade de linhas afetadas no banco de dados
 
-                int produtoExcluidoLimpeza = psProduto.executeUpdate();
-                int produtoExcluido = psProduto.executeUpdate();
 
                 if (produtoExcluidoLimpeza == 0 || produtoExcluido == 0) {
                     conn.rollback();

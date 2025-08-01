@@ -61,13 +61,10 @@ public class ProdutoEletronicoDAO {
                  PreparedStatement psProduto = conn.prepareStatement(sqlProduto)) {
 
                 psProdutoEletronico.setInt(1, id);
-                psProdutoEletronico.executeUpdate();
+                int produtoExcluidoEletronico = psProdutoEletronico.executeUpdate(); //Verificando a quantidade de linhas afetadas no banco de dados
 
                 psProduto.setInt(1, id);
-                psProduto.executeUpdate();
-
-                int produtoExcluidoEletronico = psProdutoEletronico.executeUpdate();
-                int produtExcluido = psProduto.executeUpdate();
+                int produtExcluido = psProduto.executeUpdate(); //Verificando a quantidade de linhas afetadas no banco de dados
 
                 //Caso o ID seja inválido o sistema não realizará a exclusão de nada
                 if (produtoExcluidoEletronico == 0 || produtExcluido == 0) {

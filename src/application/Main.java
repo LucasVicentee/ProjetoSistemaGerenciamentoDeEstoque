@@ -159,6 +159,22 @@ public class Main {
                         }
                         break;
                         case 2:
+                            System.out.println("Insira o ID (identificador) do produto de limpeza para excluí-lo");
+                            System.out.print("ID: ");
+                            int idProdLimpeza = sc.nextInt();
+                            sc.nextLine();
+                            System.out.println("Tem certeza que deseja excluir o produto do sistema? (S/N): ");
+                            char opExcluirProdLimpeza = sc.next().charAt(0);
+                            if (opExcluirProdLimpeza == 'S' || opExcluirProdLimpeza == 's') {
+                                System.out.println("Excluindo produto do sistema...");
+
+                                ProdutoLimpezaDAO prodLimpezaDAO = new ProdutoLimpezaDAO();
+                                prodLimpezaDAO.excluirProdutoLimpeza(idProdLimpeza);
+                            }
+                            else {
+                                System.out.println("Cancelando a exclusão do produto...");
+                            }
+                        break;
                     }
             }
             System.out.println("Deseja continuar no menu de interação? (S/N): ");
