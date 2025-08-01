@@ -26,7 +26,7 @@ public class ProdutoEletronicoDAO {
             psProduto.executeUpdate();
 
             // Obter o ID gerado do auto_increment do banco de dados
-            try (ResultSet rs = psProduto.getGeneratedKeys();) {
+            try (ResultSet rs = psProduto.getGeneratedKeys()) {
                 if (rs.next()) {
                     int idGerado = rs.getInt(1);
                     pe.setId(idGerado); // define o ID no objeto também

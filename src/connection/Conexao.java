@@ -13,14 +13,8 @@ public class Conexao {
     private static Connection conn;
 
     public static Connection getConexao() {
-        try {
-            if (conn == null) {
-                conn= DriverManager.getConnection(url, user, password);
-                return conn;
-            }
-            else {
-                return conn;
-            }
+        try { //Retorna uma conexão sempre válida, caso seja preciso utilizar as funcionalidades do banco mais de uma vez
+            return DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

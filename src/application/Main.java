@@ -41,34 +41,34 @@ public class Main {
 
                     switch (opProdEletronico) {
                         case 1: {
-                                try {
-                                    System.out.println("Informe os dados para inserir no sistema: ");
-                                    System.out.print("Nome: ");
-                                    String nome = sc.nextLine();
-                                    System.out.print("Preço: ");
-                                    double preco = sc.nextDouble();
-                                    sc.nextLine();
-                                    System.out.print("Quantidade: ");
-                                    int quantidade = sc.nextInt();
-                                    sc.nextLine();
-                                    System.out.print("Data de fabricação (dd/MM/yyyy): ");
-                                    String dataString = sc.nextLine();
-                                    Date utilDate = sdf.parse(dataString); //Convertendo ums String para o formato de data utilizando o sdf (SimpleDateFormat)
-                                    java.sql.Date dataFabricacao = new java.sql.Date(utilDate.getTime()); //Prepara a data inserida acima para o Banco
-                                    System.out.print("Fabricante: ");
-                                    String fabricante = sc.nextLine();
-                                    System.out.print("Garantia em meses: ");
-                                    int garantiaMeses = sc.nextInt();
-                                    sc.nextLine();
-                                    System.out.print("Voltagem do produto Eletrônico: ");
-                                    String voltagem = sc.nextLine();
+                            try {
+                                System.out.println("Informe os dados para inserir no sistema: ");
+                                System.out.print("Nome: ");
+                                String nome = sc.nextLine();
+                                System.out.print("Preço: ");
+                                double preco = sc.nextDouble();
+                                sc.nextLine();
+                                System.out.print("Quantidade: ");
+                                int quantidade = sc.nextInt();
+                                sc.nextLine();
+                                System.out.print("Data de fabricação (dd/MM/yyyy): ");
+                                String dataString = sc.nextLine();
+                                Date utilDate = sdf.parse(dataString); //Convertendo ums String para o formato de data utilizando o sdf (SimpleDateFormat)
+                                java.sql.Date dataFabricacao = new java.sql.Date(utilDate.getTime()); //Prepara a data inserida acima para o Banco
+                                System.out.print("Fabricante: ");
+                                String fabricante = sc.nextLine();
+                                System.out.print("Garantia em meses: ");
+                                int garantiaMeses = sc.nextInt();
+                                sc.nextLine();
+                                System.out.print("Voltagem do produto Eletrônico: ");
+                                String voltagem = sc.nextLine();
 
-                                    //Chamada do método de inseção de dados da classe ProdutoEletronico
-                                    ProdutoEletronico pe = new ProdutoEletronico(nome, preco, quantidade, dataFabricacao, fabricante, garantiaMeses, voltagem);
+                                //Chamada do método de inseção de dados da classe ProdutoEletronico
+                                ProdutoEletronico pe = new ProdutoEletronico(nome, preco, quantidade, dataFabricacao, fabricante, garantiaMeses, voltagem);
 
-                                    ProdutoEletronicoDAO prodEletroDAO = new ProdutoEletronicoDAO(); //Chamada da classe DAO
-                                    prodEletroDAO.cadastrarProdutoEletronico(pe); //Inserção dos dados acima na classe DAO do banco
-                                }
+                                ProdutoEletronicoDAO prodEletroDAO = new ProdutoEletronicoDAO(); //Chamada da classe DAO
+                                prodEletroDAO.cadastrarProdutoEletronico(pe); //Inserção dos dados acima na classe DAO do banco
+                            }
                                 catch (ParseException e) {
                                     System.out.println("Erro ao converter a data. " + e.getMessage());
                                     }
