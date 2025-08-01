@@ -24,8 +24,8 @@ public class Main {
             System.out.println("menu de interações");
             System.out.println("Selecione o tipo de produto para interagir: ");
             System.out.println("1 - Para produto Eletrônico");
-            System.out.println("2 - Para produto Perecível");
-            System.out.println("3 - Para produto de Limpeza");
+            System.out.println("2 - Para produto de Limpeza");
+            System.out.println("3 - Para produto Perecível");
             System.out.print("Opcão: ");
             int opcao = sc.nextInt();
             sc.nextLine();
@@ -112,7 +112,20 @@ public class Main {
                     }
                 }
                 case 2:
+                    System.out.println("Produto de Limpeza selecionado, selecione o que deseja ser feito: ");
+                    System.out.println("1 - Inserir um produto de Limpeza no sistema");
+                    System.out.println("2 - Deletar um produto de Limpeza do sistema");
+                    System.out.println("3 - Buscar informações de um produto de Limpeza no sistema");
+                    int opProdLimpeza = sc.nextInt();
+                    sc.nextLine();
 
+                    switch (opProdLimpeza) {
+                        case 1: {
+                            try {
+
+                            }
+                        }
+                    }
             }
             System.out.println("Deseja continuar no menu de interação? (S/N): ");
             repeticao = sc.next().charAt(0);

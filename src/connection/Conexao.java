@@ -15,7 +15,8 @@ public class Conexao {
     public static Connection getConexao() {
         try { //Retorna uma conexão sempre válida, caso seja preciso utilizar as funcionalidades do banco mais de uma vez
             return DriverManager.getConnection(url, user, password);
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
