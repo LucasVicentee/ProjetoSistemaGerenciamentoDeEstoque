@@ -128,10 +128,10 @@ public class Main {
                                 System.out.println("Informe os dados para inserir no sistema: ");
                                 System.out.print("Nome: ");
                                 String nome = sc.nextLine();
-                                System.out.println("Preço: ");
+                                System.out.print("Preço: ");
                                 double preco = sc.nextDouble();
                                 sc.nextLine();
-                                System.out.println("Quantidade: ");
+                                System.out.print("Quantidade: ");
                                 int quantidade = sc.nextInt();
                                 sc.nextLine();
                                 System.out.print("Data de fabricação (dd/MM/yyyy): ");
@@ -153,8 +153,8 @@ public class Main {
                                 ProdutoLimpezaDAO prodLimpDAO = new ProdutoLimpezaDAO();
                                 prodLimpDAO.cadastrarProdutoLimpeza(pl);
                             }
-                            catch (java.text.ParseException e) {
-                                e.getMessage();
+                            catch (ParseException e) {
+                                System.out.println("Erro ao converter a data. " + e.getMessage());
                             }
                         }
                         break;

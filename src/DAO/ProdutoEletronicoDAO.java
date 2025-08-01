@@ -76,7 +76,7 @@ public class ProdutoEletronicoDAO {
                 }
                 else {
                     //Quando o ID foi encontrado o sistema avisará e excluirá o produto do sistema
-                    System.out.println("Produto Eletrônico excluído com sucesso.");
+                    System.out.println("Produto eletrônico do ID: " + id + " excluído com sucesso!");
                     conn.commit();
                 }
             }
