@@ -1,5 +1,7 @@
 package application;
 
+import DAO.ProdutoLimpezaDAO;
+import entities.ProdutoLimpeza;
 import exceptions.ProdutoNaoEncontradoException;
 
 import DAO.ProdutoEletronicoDAO;
@@ -118,13 +120,45 @@ public class Main {
                     System.out.println("3 - Buscar informações de um produto de Limpeza no sistema");
                     int opProdLimpeza = sc.nextInt();
                     sc.nextLine();
+                    System.out.println("Opção: ");
 
                     switch (opProdLimpeza) {
                         case 1: {
                             try {
+                                System.out.println("Informe os dados para inserir no sistema: ");
+                                System.out.print("Nome: ");
+                                String nome = sc.nextLine();
+                                System.out.println("Preço: ");
+                                double preco = sc.nextDouble();
+                                sc.nextLine();
+                                System.out.println("Quantidade: ");
+                                int quantidade = sc.nextInt();
+                                sc.nextLine();
+                                System.out.print("Data de fabricação (dd/MM/yyyy): ");
+                                String dataString = sc.nextLine();
+                                Date utilDate = sdf.parse(dataString); //Convertendo ums String para o formato de data utilizando o sdf (SimpleDateFormat)
+                                java.sql.Date dataFabricacao = new java.sql.Date(utilDate.getTime()); //Prepara a data inserida acima para o Banco
+                                System.out.println("Fabricante: ");
+                                String fabricante = sc.nextLine();
+                                System.out.println("Fragrância: ");
+                                String fragrancia = sc.nextLine();
+                                System.out.println("Volume em ML: ");
+                                int volume_ml = sc.nextInt();
+                                sc.nextLine();
+                                System.out.println("Uso recomendado: ");
+                                String uso = sc.nextLine();
 
+                                ProdutoLimpeza pl = new ProdutoLimpeza(nome, preco, quantidade, dataFabricacao, fabricante, fragrancia, volume_ml, uso);
+
+                                ProdutoLimpezaDAO prodLimpDAO = new ProdutoLimpezaDAO();
+                                prodLimpDAO.cadastrarProdutoLimpeza(pl);
+                            }
+                            catch (java.text.ParseException e) {
+                                e.getMessage();
                             }
                         }
+                        break;
+                        case 2:
                     }
             }
             System.out.println("Deseja continuar no menu de interação? (S/N): ");

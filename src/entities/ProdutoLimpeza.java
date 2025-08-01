@@ -18,6 +18,13 @@ public class ProdutoLimpeza extends Produto{
         this.uso = uso;
     }
 
+    public ProdutoLimpeza(String nome, double preco, int quantidade, Date dataFabricacao, String fabricante, String fragrancia, int volumeMl, String uso) {
+        super(nome, preco, quantidade, dataFabricacao, fabricante);
+        this.fragrancia = fragrancia;
+        this.volumeMl = volumeMl;
+        this.uso = uso;
+    }
+
     public String getFragrancia() {
         return fragrancia;
     }
