@@ -158,7 +158,7 @@ public class Main {
                             }
                         }
                         break;
-                        case 2:
+                        case 2: {
                             System.out.println("Insira o ID (identificador) do produto de limpeza para excluí-lo");
                             System.out.print("ID: ");
                             int idProdLimpeza = sc.nextInt();
@@ -170,11 +170,24 @@ public class Main {
 
                                 ProdutoLimpezaDAO prodLimpezaDAO = new ProdutoLimpezaDAO();
                                 prodLimpezaDAO.excluirProdutoLimpeza(idProdLimpeza);
-                            }
-                            else {
+                            } else {
                                 System.out.println("Cancelando a exclusão do produto...");
                             }
+                        }
                         break;
+                        case 3: {
+                            try {
+                                System.out.println("Informe o ID (identificador) do produto de limpeza: ");
+                                System.out.print("ID: ");
+                                int idProdLimpeza = sc.nextInt();
+
+                                ProdutoLimpezaDAO prodLimpeDAO = new ProdutoLimpezaDAO();
+                                prodLimpeDAO.buscarProdutoLimpezaPorID(idProdLimpeza);
+                            }
+                            catch (ProdutoNaoEncontradoException e) {
+                                System.out.println("Erro: " + e.getMessage());
+                            }
+                        }
                     }
             }
             System.out.println("Deseja continuar no menu de interação? (S/N): ");

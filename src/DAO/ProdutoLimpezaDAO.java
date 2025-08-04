@@ -114,7 +114,7 @@ public class ProdutoLimpezaDAO {
                     System.out.println("ID" + rs.getInt("id"));
                     System.out.println("Nome: " + rs.getString("nome"));
                     System.out.println("Preço: " + rs.getDouble("preco"));
-                    System.out.println("Quantidadade: " + rs.getInt("quantidade"));
+                    System.out.println("Quantidade: " + rs.getInt("quantidade"));
                     System.out.println("Data de fabricação: " + rs.getDate("data_fabricacao"));
                     System.out.println("Fabricante: " + rs.getString("fabricante"));
                     System.out.println("Fragrância: " + rs.getString("fragrancia"));
