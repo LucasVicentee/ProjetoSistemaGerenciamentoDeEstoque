@@ -70,12 +70,11 @@ public class Main {
 
                                 ProdutoEletronicoDAO prodEletroDAO = new ProdutoEletronicoDAO(); //Chamada da classe DAO
                                 prodEletroDAO.cadastrarProdutoEletronico(pe); //Inserção dos dados acima na classe DAO do banco
+                            } catch (ParseException e) {
+                                System.out.println("Erro ao converter a data. " + e.getMessage());
                             }
-                                catch (ParseException e) {
-                                    System.out.println("Erro ao converter a data. " + e.getMessage());
-                                    }
-                                }
-                                break;
+                        }
+                        break;
                         case 2: {
                             try {
                                 System.out.println("Informe o ID (Identificador) do produto Eletrônico para excluí-lo");
@@ -91,8 +90,7 @@ public class Main {
                                 } else {
                                     System.out.println("Cancelando a remoção do produto eletrônico...");
                                 }
-                            }
-                            catch (ProdutoNaoEncontradoException e) {
+                            } catch (ProdutoNaoEncontradoException e) {
                                 System.out.println("Erro: " + e.getMessage());
                             }
                         }
@@ -105,15 +103,14 @@ public class Main {
 
                                 ProdutoEletronicoDAO prodEletroDAO = new ProdutoEletronicoDAO();
                                 prodEletroDAO.buscarProdutoEletronicoPorID(idProdELetronico);
-                            }
-                            catch (ProdutoNaoEncontradoException e) {
+                            } catch (ProdutoNaoEncontradoException e) {
                                 System.out.println("Erro: " + e.getMessage());
                             }
                         }
                         break;
                     }
                 }
-                case 2:
+                case 2: {
                     System.out.println("Produto de Limpeza selecionado, selecione o que deseja ser feito: ");
                     System.out.println("1 - Inserir um produto de Limpeza no sistema");
                     System.out.println("2 - Deletar um produto de Limpeza do sistema");
@@ -152,8 +149,7 @@ public class Main {
 
                                 ProdutoLimpezaDAO prodLimpDAO = new ProdutoLimpezaDAO();
                                 prodLimpDAO.cadastrarProdutoLimpeza(pl);
-                            }
-                            catch (ParseException e) {
+                            } catch (ParseException e) {
                                 System.out.println("Erro ao converter a data. " + e.getMessage());
                             }
                         }
@@ -183,12 +179,27 @@ public class Main {
 
                                 ProdutoLimpezaDAO prodLimpeDAO = new ProdutoLimpezaDAO();
                                 prodLimpeDAO.buscarProdutoLimpezaPorID(idProdLimpeza);
-                            }
-                            catch (ProdutoNaoEncontradoException e) {
+                            } catch (ProdutoNaoEncontradoException e) {
                                 System.out.println("Erro: " + e.getMessage());
                             }
                         }
+                        break;
                     }
+                }
+                case 3: {
+                    System.out.println("Produto perecível selecionado, selecione o que deseja ser feito: ");
+                    System.out.println("1 - Inserir um produto perecível no sistema");
+                    System.out.println("2 - Deletar um produto perecível do sistema");
+                    System.out.println("3 - Buscar informações de um produto perecível no sistema");
+                    int opProdPerecivel = sc.nextInt();
+                    sc.nextLine();
+
+                    switch (opProdPerecivel) {
+                        case 1: {
+
+                        }
+                    }
+                }
             }
             System.out.println("Deseja continuar no menu de interação? (S/N): ");
             repeticao = sc.next().charAt(0);
