@@ -2,6 +2,7 @@ package application;
 
 import DAO.ProdutoLimpezaDAO;
 import entities.ProdutoLimpeza;
+import exceptions.DataFormatoIncorretoException;
 import exceptions.ProdutoNaoEncontradoException;
 
 import DAO.ProdutoEletronicoDAO;
@@ -70,8 +71,8 @@ public class Main {
 
                                 ProdutoEletronicoDAO prodEletroDAO = new ProdutoEletronicoDAO(); //Chamada da classe DAO
                                 prodEletroDAO.cadastrarProdutoEletronico(pe); //Inserção dos dados acima na classe DAO do banco
-                            } catch (ParseException e) {
-                                System.out.println("Erro ao converter a data. " + e.getMessage());
+                            } catch (java.text.ParseException e) {
+                                throw new DataFormatoIncorretoException();
                             }
                         }
                         break;
@@ -99,12 +100,13 @@ public class Main {
                             try {
                                 System.out.println("Informe o ID (Identificador) do produto Eletrônico para buscar os dados: ");
                                 System.out.println("ID: ");
-                                int idProdELetronico = sc.nextInt();
+                                int idProdEletronico = sc.nextInt();
 
                                 ProdutoEletronicoDAO prodEletroDAO = new ProdutoEletronicoDAO();
-                                prodEletroDAO.buscarProdutoEletronicoPorID(idProdELetronico);
-                            } catch (ProdutoNaoEncontradoException e) {
-                                System.out.println("Erro: " + e.getMessage());
+                                prodEletroDAO.buscarProdutoEletronicoPorID(idProdEletronico);
+                            }
+                            catch (ProdutoNaoEncontradoException e) {
+                                System.out.println("Erro" + e.getMessage());
                             }
                         }
                         break;
@@ -149,8 +151,8 @@ public class Main {
 
                                 ProdutoLimpezaDAO prodLimpDAO = new ProdutoLimpezaDAO();
                                 prodLimpDAO.cadastrarProdutoLimpeza(pl);
-                            } catch (ParseException e) {
-                                System.out.println("Erro ao converter a data. " + e.getMessage());
+                            } catch (java.text.ParseException e) {
+                                throw  new DataFormatoIncorretoException();
                             }
                         }
                         break;
@@ -196,7 +198,23 @@ public class Main {
 
                     switch (opProdPerecivel) {
                         case 1: {
-
+                            try {
+                                System.out.println("Informe os dados do produto perecível para inseri-lo no sistema");
+                                System.out.print("Nome: ");
+                                String nome = sc.nextLine();
+                                System.out.print("Preço: ");
+                                double preco = sc.nextDouble();
+                                sc.nextLine();
+                                int quantidade = sc.nextInt();
+                                sc.nextLine();
+                                System.out.print("Data de fabricação (dd/MM/yyyy): ");
+                                String dataString = sc.nextLine();
+                                Date utilDate = sdf.parse(dataString); //Convertendo ums String para o formato de data utilizando o sdf (SimpleDateFormat)
+                                java.sql.Date dataFabricacao = new java.sql.Date(utilDate.getTime()); //Prepara a data inserida acima para o Banco
+                            }
+                            catch (java.text.ParseException e) {
+                                throw new DataFormatoIncorretoException();
+                            }
                         }
                     }
                 }
