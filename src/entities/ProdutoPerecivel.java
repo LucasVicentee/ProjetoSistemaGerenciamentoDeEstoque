@@ -3,7 +3,7 @@ package entities;
 import java.util.Date;
 
 public class ProdutoPerecivel extends Produto {
-    private Date dataValidade;
+    private Date dataVencimento;
     private String tipoProduto;
     private double pesoGramas;
     private String temperaturaArmazenamento;
@@ -12,28 +12,28 @@ public class ProdutoPerecivel extends Produto {
 
     }
 
-    public ProdutoPerecivel(Integer id, String nome, double preco, int quantidade, Date dataFabricacao, String fabricante, Date dataValidade, String tipoProduto, double pesoGramas, String temperaturaArmazenamento) {
+    public ProdutoPerecivel(Integer id, String nome, double preco, int quantidade, Date dataFabricacao, String fabricante, Date dataVencimento, String tipoProduto, double pesoGramas, String temperaturaArmazenamento) {
         super(id, nome, preco, quantidade, dataFabricacao, fabricante);
-        this.dataValidade = dataValidade;
+        this.dataVencimento = dataVencimento;
         this.tipoProduto = tipoProduto;
         this.pesoGramas = pesoGramas;
         this.temperaturaArmazenamento = temperaturaArmazenamento;
     }
 
-    public ProdutoPerecivel(String nome, double preco, int quantidade, Date dataFabricacao, String fabricante, Date dataValidade, String tipoProduto, double pesoGramas, String temperaturaArmazenamento) {
+    public ProdutoPerecivel(String nome, double preco, int quantidade, Date dataFabricacao, String fabricante, Date dataVencimento, String tipoProduto, double pesoGramas, String temperaturaArmazenamento) {
         super(nome, preco, quantidade, dataFabricacao, fabricante);
-        this.dataValidade = dataValidade;
+        this.dataVencimento = dataVencimento;
         this.tipoProduto = tipoProduto;
         this.pesoGramas = pesoGramas;
         this.temperaturaArmazenamento = temperaturaArmazenamento;
     }
 
-    public Date getDataValidade() {
-        return dataValidade;
+    public Date getDataVencimento() {
+        return dataVencimento;
     }
 
-    public void setDataValidade(Date dataValidade) {
-        this.dataValidade = dataValidade;
+    public void setDataVencimento(Date dataVencimento) {
+        this.dataVencimento = dataVencimento;
     }
 
     public String getTipoProduto() {
