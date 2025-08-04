@@ -86,4 +86,29 @@ public class ProdutoLimpezaDAO {
             throw new RuntimeException(e);
         }
     }
+
+    public void buscarProdutoLimpezaPorID(int id) {
+
+        String sqlProdutoLimpeza = "SELECT\n" +
+            "p.id,\n" +
+            "p.nome,\n" +
+            "p.preco,\n" +
+            "p.quantidade,\n" +
+            "p.data_fabricacao,\n" +
+            "p.fabricante,\n" +
+            "pl.fragrancia,\n" +
+            "pl.volume_ml,\n" +
+            "pl.uso\n" +
+        "FROM\n" +
+        "produto p\n" +
+        "JOIN\n" +
+        "produto_limpeza pl ON p.id = pl.id";
+
+        try (Connection conn = Conexao.getConexao();
+        PreparedStatement psProdutoLimpeza = conn.prepareStatement(sqlProdutoLimpeza)) {
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

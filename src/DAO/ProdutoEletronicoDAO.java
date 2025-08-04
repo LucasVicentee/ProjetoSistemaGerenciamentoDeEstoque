@@ -125,7 +125,6 @@ public class ProdutoEletronicoDAO {
                 else { //Caso não for encontrado um ID correspondente com o que o usuário informou
                     throw new ProdutoNaoEncontradoException("Produto com ID " + id + " não encontrado.");
                 }
-
             }
         }
         catch (SQLException e) {
