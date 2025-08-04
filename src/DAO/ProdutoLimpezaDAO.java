@@ -102,7 +102,8 @@ public class ProdutoLimpezaDAO {
         "FROM\n" +
         "produto p\n" +
         "JOIN\n" +
-        "produto_limpeza pl ON p.id = pl.id";
+        "produto_limpeza pl ON p.id = pl.id\n" +
+        "WHERE pl.id = ?";
 
         try (Connection conn = Conexao.getConexao();
         PreparedStatement psProdutoLimpeza = conn.prepareStatement(sqlProdutoLimpeza)) {
@@ -111,7 +112,7 @@ public class ProdutoLimpezaDAO {
             try (ResultSet rs = psProdutoLimpeza.executeQuery()) {
                 if (rs.next()) {
                     System.out.println("Produto encontrado!");
-                    System.out.println("ID" + rs.getInt("id"));
+                    System.out.println("ID: " + rs.getInt("id"));
                     System.out.println("Nome: " + rs.getString("nome"));
                     System.out.println("Preço: " + rs.getDouble("preco"));
                     System.out.println("Quantidade: " + rs.getInt("quantidade"));

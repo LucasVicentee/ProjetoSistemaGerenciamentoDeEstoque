@@ -89,7 +89,7 @@ public class Main {
                                     ProdutoEletronicoDAO prodEletroDAO = new ProdutoEletronicoDAO();
                                     prodEletroDAO.excluirProdutoEletronico(idProdEletronico);
                                 } else {
-                                    System.out.println("Cancelando a remoção do produto no sistema...");
+                                    System.out.println("Cancelando a remoção do produto eletrônico...");
                                 }
                             }
                             catch (ProdutoNaoEncontradoException e) {
@@ -171,7 +171,7 @@ public class Main {
                                 ProdutoLimpezaDAO prodLimpezaDAO = new ProdutoLimpezaDAO();
                                 prodLimpezaDAO.excluirProdutoLimpeza(idProdLimpeza);
                             } else {
-                                System.out.println("Cancelando a exclusão do produto...");
+                                System.out.println("Cancelando a exclusão do produto de limpeza...");
                             }
                         }
                         break;
