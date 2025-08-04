@@ -106,9 +106,27 @@ public class ProdutoLimpezaDAO {
 
         try (Connection conn = Conexao.getConexao();
         PreparedStatement psProdutoLimpeza = conn.prepareStatement(sqlProdutoLimpeza)) {
+            psProdutoLimpeza.setInt(1, id);
 
+            try (ResultSet rs = psProdutoLimpeza.executeQuery()) {
+                if (rs.next()) {
+                    System.out.println("Produto encontrado!");
+                    System.out.println("ID" + rs.getInt("id"));
+                    System.out.println("Nome: " + rs.getString("nome"));
+                    System.out.println("Preço: " + rs.getDouble("preco"));
+                    System.out.println("Quantidadade: " + rs.getInt("quantidade"));
+                    System.out.println("Data de fabricação: " + rs.getDate("data_fabricacao"));
+                    System.out.println("Fabricante: " + rs.getString("fabricante"));
+                    System.out.println("Fragrância: " + rs.getString("fragrancia"));
+                    System.out.println("Volume em ML: " + rs.getInt("volume_ml"));
+                    System.out.println("Uso: " + rs.getString("uso"));
+                }
+                else {
+                    throw new ProdutoNaoEncontradoException("Produto com ID " + id + " não encontrado.");
+                }
+            }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 }
