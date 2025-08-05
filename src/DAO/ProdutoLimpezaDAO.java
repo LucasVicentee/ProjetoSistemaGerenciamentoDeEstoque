@@ -102,7 +102,7 @@ public class ProdutoLimpezaDAO {
         "FROM\n" +
         "produto p\n" +
         "JOIN\n" +
-        "produto_limpeza pl ON p.id = pl.id\n" +
+        "produto_limpeza pl ON p.id = pl.id" +
         "WHERE pl.id = ?";
 
         try (Connection conn = Conexao.getConexao();

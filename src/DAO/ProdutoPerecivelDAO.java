@@ -4,6 +4,7 @@ import connection.Conexao;
 import entities.ProdutoPerecivel;
 import exceptions.ProdutoNaoEncontradoException;
 
+import javax.xml.transform.Result;
 import java.sql.*;
 
 public class ProdutoPerecivelDAO {
@@ -74,6 +75,51 @@ public class ProdutoPerecivelDAO {
                 System.out.println("Produto do ID " + id + " excluído com sucesso!");
             }
 
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void listarProdutoPerecivel(int id) {
+
+        String sqlProdutoPerecivel = "SELECT\n" +
+                "p.id,\n" +
+                "p.nome,\n" +
+                "p.preco,\n" +
+                "p.quantidade,\n" +
+                "p.data_fabricacao,\n" +
+                "p.fabricante,\n" +
+                "pp.data_vencimento,\n" +
+                "pp.tipo_produto,\n" +
+                "pp.peso_gramas,\n" +
+                "pp.temperatura_armazenamento\n" +
+        "FROM\n" +
+        "produto p\n" +
+        "JOIN\n" +
+        "produto_perecivel pp ON p.id = pp.id\n" +
+        "WHERE pp.id = ?";
+
+        try (Connection conn = Conexao.getConexao();
+        PreparedStatement psProdutoPerecivel = conn.prepareStatement(sqlProdutoPerecivel)){
+
+            try (ResultSet rs = psProdutoPerecivel.executeQuery()) {
+                if (rs.next()) {
+                    System.out.println("Produto encontrado!");
+                    System.out.println("ID: " + rs.getInt("id"));
+                    System.out.println("Nome: " + rs.getString("nome"));
+                    System.out.println("Preço: " + rs.getDouble("preco"));
+                    System.out.println("Quantidade: " + rs.getInt("quantidade"));
+                    System.out.println("Data de fabricação" + rs.getDate("data_fabricacao"));
+                    System.out.println("Fabricante: " + rs.getString("fabricante"));
+                    System.out.println("Data de vencimento: " + rs.getDate("data_vencimento"));
+                    System.out.println("Tipo do produto: " + rs.getString("tipo_produto"));
+                    System.out.println("Peso em gramas: " + rs.getDouble("peso_gramas"));
+                    System.out.println("Temperatura de armazenamento: " + rs.getString("temperatura_armazenamento"));
+                }
+                else {
+                    throw new ProdutoNaoEncontradoException(id);
+                }
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

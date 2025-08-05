@@ -31,8 +31,7 @@ public class Main {
             System.out.println("2 - Para produto de Limpeza");
             System.out.println("3 - Para produto Perecível");
             System.out.print("Opcão: ");
-            int opcao = sc.nextInt();
-            sc.nextLine();
+            int opcao = Integer.parseInt(sc.nextLine());
 
             switch (opcao) {
                 case 1: {
