@@ -10,7 +10,6 @@ import exceptions.ProdutoNaoEncontradoException;
 import DAO.ProdutoEletronicoDAO;
 import entities.ProdutoEletronico;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -248,6 +247,10 @@ public class Main {
                             }
                         }
                         break;
+                        case 2: {
+                            System.out.println("Informe o ID (identificador) do produto perecível que deseja excluír");
+                            System.out.println("")
+                        }
                     }
                 }
             }

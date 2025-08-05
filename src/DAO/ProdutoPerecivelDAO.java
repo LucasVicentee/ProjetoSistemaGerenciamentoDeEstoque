@@ -2,6 +2,7 @@ package DAO;
 
 import connection.Conexao;
 import entities.ProdutoPerecivel;
+import exceptions.ProdutoNaoEncontradoException;
 
 import java.sql.*;
 
@@ -44,6 +45,37 @@ public class ProdutoPerecivelDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void excluirProdutoPerecivel(int id) {
+
+        String sqlProduto = "DELETE FROM produto WHERE id = ?";
+        String sqlProdutoPerecivel = "DELETE FROM produto_perecivel WHERE id = ?";
+
+        try (Connection conn = Conexao.getConexao();
+        PreparedStatement psProduto = conn.prepareStatement(sqlProduto);
+        PreparedStatement psProdutoPerecivel = conn.prepareStatement(sqlProdutoPerecivel)) {
+
+            conn.setAutoCommit(false);
+
+            psProdutoPerecivel.setInt(1, id);
+            int ProdutoExcluidoPerecivel = psProdutoPerecivel.executeUpdate();
+
+            psProduto.setInt(1, id);
+            int ProdutoExcluido = psProduto.executeUpdate();
+
+            if (ProdutoExcluidoPerecivel == 0 || ProdutoExcluido == 0) {
+                conn.rollback();
+                throw new ProdutoNaoEncontradoException(id);
+            }
+            else {
+                conn.commit();
+                System.out.println("Produto do ID " + id + " excluído com sucesso!");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 }

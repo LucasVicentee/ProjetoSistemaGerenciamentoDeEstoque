@@ -71,10 +71,10 @@ public class ProdutoLimpezaDAO {
 
                 if (produtoExcluidoLimpeza == 0 || produtoExcluido == 0) {
                     conn.rollback();
-                    throw new ProdutoNaoEncontradoException("Produto com ID " + id + " não encontrado.");
+                    throw new ProdutoNaoEncontradoException(id);
                 }
                 else {
-                    System.out.println("Produto de limpeza do ID: " + id + " excluído com sucesso!");
+                    System.out.println(" Produto de limpeza do ID: " + id + " excluído com sucesso!");
                     conn.commit();
                 }
             }
