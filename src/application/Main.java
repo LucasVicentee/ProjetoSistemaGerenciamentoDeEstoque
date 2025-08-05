@@ -203,26 +203,34 @@ public class Main {
                         case 1: {
                             try {
                                 System.out.println("Informe os dados do produto perecível para inseri-lo no sistema");
+
                                 System.out.print("Nome: ");
                                 String nome = sc.nextLine();
                                 System.out.print("Preço: ");
-                                double preco = sc.nextDouble();
-                                int quantidade = sc.nextInt();
+                                double preco = Double.parseDouble(sc.nextLine());
+
+                                System.out.print("Quantidade: ");
+                                int quantidade = Integer.parseInt(sc.nextLine());
+
                                 System.out.print("Data de fabricação (dd/MM/yyyy): ");
                                 String dataFabricacaoString = sc.nextLine();
                                 Date utilFabricacaoDate = sdf.parse(dataFabricacaoString);
                                 java.sql.Date dataFabricacao = new java.sql.Date(utilFabricacaoDate.getTime());
+
                                 System.out.print("Fabricante: ");
                                 String fabricante = sc.nextLine();
+
                                 System.out.print("Data de vencimento (dd/MM/yyyy): ");
                                 String dataVencimentoString = sc.nextLine();
                                 Date utilVencimentoDate = sdf.parse(dataVencimentoString);
                                 java.sql.Date dataVencimento = new java.sql.Date(utilVencimentoDate.getTime());
+
                                 System.out.print("Tipo do produto: ");
                                 String tipoProduto = sc.nextLine();
+
                                 System.out.print("Peso em gramas: ");
-                                double pesoGramas = sc.nextDouble();
-                                sc.nextLine();
+                                double pesoGramas = Double.parseDouble(sc.nextLine());
+
                                 System.out.print("Temperatura para armazenamento: ");
                                 String temperaturaArmazenamento = sc.nextLine();
 
