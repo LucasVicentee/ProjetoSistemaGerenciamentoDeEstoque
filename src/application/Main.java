@@ -202,8 +202,7 @@ public class Main {
                     System.out.println("2 - Deletar um produto perecível do sistema");
                     System.out.println("3 - Buscar informações de um produto perecível no sistema");
                     System.out.print("Opção: ");
-                    int opProdPerecivel = sc.nextInt();
-                    sc.nextLine();
+                    int opProdPerecivel = Integer.parseInt(sc.nextLine());
 
                     switch (opProdPerecivel) {
                         case 1: {
