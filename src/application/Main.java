@@ -41,8 +41,7 @@ public class Main {
                     System.out.println("1 - Inserir um produto Eletrônico no sistema");
                     System.out.println("2 - Deletar um produto Eletrônico do sistema");
                     System.out.println("3 - Buscar informações de um produto Eletrônico no sistema");
-                    int opProdEletronico = sc.nextInt();
-                    sc.nextLine();
+                    int opProdEletronico = Integer.parseInt(sc.nextLine());
 
                     switch (opProdEletronico) {
                         case 1: {
@@ -51,20 +50,22 @@ public class Main {
                                 System.out.print("Nome: ");
                                 String nome = sc.nextLine();
                                 System.out.print("Preço: ");
-                                double preco = sc.nextDouble();
-                                sc.nextLine();
+                                double preco = Double.parseDouble(sc.nextLine());
+
                                 System.out.print("Quantidade: ");
-                                int quantidade = sc.nextInt();
-                                sc.nextLine();
+                                int quantidade = Integer.parseInt(sc.nextLine());
+
                                 System.out.print("Data de fabricação (dd/MM/yyyy): ");
                                 String dataString = sc.nextLine();
                                 Date utilDate = sdf.parse(dataString); //Convertendo ums String para o formato de data utilizando o sdf (SimpleDateFormat)
                                 java.sql.Date dataFabricacao = new java.sql.Date(utilDate.getTime()); //Prepara a data inserida acima para o Banco
+
                                 System.out.print("Fabricante: ");
                                 String fabricante = sc.nextLine();
+
                                 System.out.print("Garantia em meses: ");
-                                int garantiaMeses = sc.nextInt();
-                                sc.nextLine();
+                                int garantiaMeses = Integer.parseInt(sc.nextLine());
+
                                 System.out.print("Voltagem do produto Eletrônico: ");
                                 String voltagem = sc.nextLine();
 
@@ -82,7 +83,8 @@ public class Main {
                             try {
                                 System.out.println("Informe o ID (Identificador) do produto Eletrônico para excluí-lo");
                                 System.out.print("ID: ");
-                                int idProdEletronico = sc.nextInt();
+                                int idProdEletronico = Integer.parseInt(sc.nextLine());
+
                                 System.out.println("Tem certeza que deseja remover o produto do sistema? (S/N)");
                                 char opExcluirProd = sc.next().charAt(0);
                                 if (opExcluirProd == 's' || opExcluirProd == 'S') {
@@ -102,7 +104,7 @@ public class Main {
                             try {
                                 System.out.println("Informe o ID (Identificador) do produto Eletrônico para buscar os dados: ");
                                 System.out.println("ID: ");
-                                int idProdEletronico = sc.nextInt();
+                                int idProdEletronico = Integer.parseInt(sc.nextLine());
 
                                 ProdutoEletronicoDAO prodEletroDAO = new ProdutoEletronicoDAO();
                                 prodEletroDAO.buscarProdutoEletronicoPorID(idProdEletronico);
