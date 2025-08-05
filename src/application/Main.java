@@ -249,7 +249,21 @@ public class Main {
                         break;
                         case 2: {
                             System.out.println("Informe o ID (identificador) do produto perecível que deseja excluír");
-                            System.out.println("")
+                            System.out.print("ID: ");
+                            int idProdPerecivel = Integer.parseInt(sc.nextLine());
+
+                            System.out.println("Tem certeza que deseja excluír o produto perecível? (S/N)");
+                            char opExcluirProd = sc.next().charAt(0);
+
+                            if (opExcluirProd == 'S' || opExcluirProd == 's') {
+                                System.out.println("Excluindo produto perecível do sistema...");
+
+                                ProdutoPerecivelDAO prodPereciDAO = new ProdutoPerecivelDAO();
+                                prodPereciDAO.excluirProdutoPerecivel(idProdPerecivel);
+                            }
+                            else {
+                                System.out.println("Cancelando a exclusão do produto perecível no sistema....");
+                            }
                         }
                     }
                 }
