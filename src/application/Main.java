@@ -1,7 +1,9 @@
 package application;
 
 import DAO.ProdutoLimpezaDAO;
+import DAO.ProdutoPerecivelDAO;
 import entities.ProdutoLimpeza;
+import entities.ProdutoPerecivel;
 import exceptions.DataFormatoIncorretoException;
 import exceptions.ProdutoNaoEncontradoException;
 
@@ -193,6 +195,7 @@ public class Main {
                     System.out.println("1 - Inserir um produto perecível no sistema");
                     System.out.println("2 - Deletar um produto perecível do sistema");
                     System.out.println("3 - Buscar informações de um produto perecível no sistema");
+                    System.out.print("Opção: ");
                     int opProdPerecivel = sc.nextInt();
                     sc.nextLine();
 
@@ -204,18 +207,34 @@ public class Main {
                                 String nome = sc.nextLine();
                                 System.out.print("Preço: ");
                                 double preco = sc.nextDouble();
-                                sc.nextLine();
                                 int quantidade = sc.nextInt();
-                                sc.nextLine();
                                 System.out.print("Data de fabricação (dd/MM/yyyy): ");
-                                String dataString = sc.nextLine();
-                                Date utilDate = sdf.parse(dataString); //Convertendo ums String para o formato de data utilizando o sdf (SimpleDateFormat)
-                                java.sql.Date dataFabricacao = new java.sql.Date(utilDate.getTime()); //Prepara a data inserida acima para o Banco
+                                String dataFabricacaoString = sc.nextLine();
+                                Date utilFabricacaoDate = sdf.parse(dataFabricacaoString);
+                                java.sql.Date dataFabricacao = new java.sql.Date(utilFabricacaoDate.getTime());
+                                System.out.print("Fabricante: ");
+                                String fabricante = sc.nextLine();
+                                System.out.print("Data de vencimento (dd/MM/yyyy): ");
+                                String dataVencimentoString = sc.nextLine();
+                                Date utilVencimentoDate = sdf.parse(dataVencimentoString);
+                                java.sql.Date dataVencimento = new java.sql.Date(utilVencimentoDate.getTime());
+                                System.out.print("Tipo do produto: ");
+                                String tipoProduto = sc.nextLine();
+                                System.out.print("Peso em gramas: ");
+                                double pesoGramas = sc.nextDouble();
+                                sc.nextLine();
+                                System.out.print("Temperatura para armazenamento: ");
+                                String temperaturaArmazenamento = sc.nextLine();
+
+                                ProdutoPerecivel pp = new ProdutoPerecivel(nome, preco, quantidade, dataFabricacao, fabricante, dataVencimento, tipoProduto, pesoGramas, temperaturaArmazenamento);
+                                ProdutoPerecivelDAO prodPereciDAO = new ProdutoPerecivelDAO();
+                                prodPereciDAO.cadastrarProdutoPerecivel(pp);
                             }
                             catch (java.text.ParseException e) {
                                 throw new DataFormatoIncorretoException();
                             }
                         }
+                        break;
                     }
                 }
             }
