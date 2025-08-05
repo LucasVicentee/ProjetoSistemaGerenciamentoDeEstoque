@@ -121,8 +121,8 @@ public class Main {
                     System.out.println("1 - Inserir um produto de Limpeza no sistema");
                     System.out.println("2 - Deletar um produto de Limpeza do sistema");
                     System.out.println("3 - Buscar informações de um produto de Limpeza no sistema");
-                    int opProdLimpeza = sc.nextInt();
-                    sc.nextLine();
+                    int opProdLimpeza = Integer.parseInt(sc.nextLine());
+
                     System.out.println("Opção: ");
 
                     switch (opProdLimpeza) {
@@ -131,23 +131,27 @@ public class Main {
                                 System.out.println("Informe os dados para inserir no sistema: ");
                                 System.out.print("Nome: ");
                                 String nome = sc.nextLine();
+
                                 System.out.print("Preço: ");
-                                double preco = sc.nextDouble();
-                                sc.nextLine();
+                                double preco = Double.parseDouble(sc.nextLine());
+
                                 System.out.print("Quantidade: ");
-                                int quantidade = sc.nextInt();
-                                sc.nextLine();
+                                int quantidade = Integer.parseInt(sc.nextLine());
+
                                 System.out.print("Data de fabricação (dd/MM/yyyy): ");
                                 String dataString = sc.nextLine();
-                                Date utilDate = sdf.parse(dataString); //Convertendo ums String para o formato de data utilizando o sdf (SimpleDateFormat)
-                                java.sql.Date dataFabricacao = new java.sql.Date(utilDate.getTime()); //Prepara a data inserida acima para o Banco
+                                Date utilDate = sdf.parse(dataString);
+                                java.sql.Date dataFabricacao = new java.sql.Date(utilDate.getTime());
+
                                 System.out.println("Fabricante: ");
                                 String fabricante = sc.nextLine();
+
                                 System.out.println("Fragrância: ");
                                 String fragrancia = sc.nextLine();
+
                                 System.out.println("Volume em ML: ");
-                                int volume_ml = sc.nextInt();
-                                sc.nextLine();
+                                int volume_ml = Integer.parseInt(sc.nextLine());
+
                                 System.out.println("Uso recomendado: ");
                                 String uso = sc.nextLine();
 
@@ -163,8 +167,8 @@ public class Main {
                         case 2: {
                             System.out.println("Insira o ID (identificador) do produto de limpeza para excluí-lo");
                             System.out.print("ID: ");
-                            int idProdLimpeza = sc.nextInt();
-                            sc.nextLine();
+                            int idProdLimpeza = Integer.parseInt(sc.nextLine());
+
                             System.out.println("Tem certeza que deseja excluir o produto do sistema? (S/N): ");
                             char opExcluirProdLimpeza = sc.next().charAt(0);
                             if (opExcluirProdLimpeza == 'S' || opExcluirProdLimpeza == 's') {
@@ -181,7 +185,7 @@ public class Main {
                             try {
                                 System.out.println("Informe o ID (identificador) do produto de limpeza: ");
                                 System.out.print("ID: ");
-                                int idProdLimpeza = sc.nextInt();
+                                int idProdLimpeza = Integer.parseInt(sc.nextLine());
 
                                 ProdutoLimpezaDAO prodLimpeDAO = new ProdutoLimpezaDAO();
                                 prodLimpeDAO.buscarProdutoLimpezaPorID(idProdLimpeza);
