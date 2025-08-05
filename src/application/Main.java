@@ -31,7 +31,8 @@ public class Main {
             System.out.println("2 - Para produto de Limpeza");
             System.out.println("3 - Para produto Perecível");
             System.out.print("Opcão: ");
-            int opcao = Integer.parseInt(sc.nextLine());
+            int opcao = sc.nextInt();
+            sc.nextLine();
 
             switch (opcao) {
                 case 1: {
@@ -262,6 +263,20 @@ public class Main {
                             }
                             else {
                                 System.out.println("Cancelando a exclusão do produto perecível no sistema....");
+                            }
+                        }
+                        break;
+                        case 3: {
+                            try {
+                                System.out.println("Informe o ID (identificador) do produto perecível que deseja buscar informações");
+                                System.out.print("ID: ");
+                                int idProdPerecivel = Integer.parseInt(sc.nextLine());
+
+                                ProdutoPerecivelDAO prodPereciDAO = new ProdutoPerecivelDAO();
+                                prodPereciDAO.listarProdutoPerecivel(idProdPerecivel);
+                            }
+                            catch (ProdutoNaoEncontradoException e) {
+                                throw new ProdutoNaoEncontradoException(e.getMessage());
                             }
                         }
                     }

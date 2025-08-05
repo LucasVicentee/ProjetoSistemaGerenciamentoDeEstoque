@@ -101,6 +101,7 @@ public class ProdutoPerecivelDAO {
 
         try (Connection conn = Conexao.getConexao();
         PreparedStatement psProdutoPerecivel = conn.prepareStatement(sqlProdutoPerecivel)){
+            psProdutoPerecivel.setInt(1,id);
 
             try (ResultSet rs = psProdutoPerecivel.executeQuery()) {
                 if (rs.next()) {
