@@ -298,6 +298,7 @@ public class Main {
                         break;
                     }
                 }
+                break;
                 case 3: {
                     System.out.println("Produto perecível selecionado, selecione o que deseja ser feito: ");
                     System.out.println("1 - Inserir um produto perecível no sistema");
@@ -382,6 +383,7 @@ public class Main {
                                 throw new ProdutoNaoEncontradoException(e.getMessage());
                             }
                         }
+                        break;
                     }
                 }
             }
