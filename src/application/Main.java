@@ -262,12 +262,40 @@ public class Main {
                                 if (opcaoAlterarInfo == 'T' || opcaoAlterarInfo == 't') {
                                     System.out.println("Informe os novos dados do produto de limpeza");
                                     System.out.print("Nome: ");
+                                    String novoNome = sc.nextLine();
+
+                                    System.out.print("Preço: ");
+                                    double novoPreco = Double.parseDouble(sc.nextLine());
+
+                                    System.out.print("Quantidade: ");
+                                    int novaQuantidade = Integer.parseInt(sc.nextLine());
+
+                                    System.out.print("Data de fabricação (dd/MM/yyyy): ");
+                                    String dataString = sc.nextLine();
+                                    Date utilDate = sdf.parse(dataString);
+                                    java.sql.Date novaDataFabricacao = new java.sql.Date(utilDate.getTime());
+
+                                    System.out.print("Fabricante: ");
+                                    String novoFabricante = sc.nextLine();
+
+                                    System.out.print("Fragrância: ");
+                                    String novaFragrancia = sc.nextLine();
+
+                                    System.out.print("Volume em ML: ");
+                                    int novoVolumeMl = Integer.parseInt(sc.nextLine());
+
+                                    System.out.print("Uso:");
+                                    String novoUso = sc.nextLine();
+
+                                    ProdutoLimpezaDAO prodLimpDAO = new ProdutoLimpezaDAO();
+                                    prodLimpDAO.alterarDadosEspecificosProdutoLimpeza(idProdLimpeza, novoNome, novoPreco, novaQuantidade, novaDataFabricacao, novoFabricante, novaFragrancia, novoVolumeMl, novoUso);
                                 }
                             }
-                            catch () {
-
+                            catch (java.text.ParseException e) {
+                                throw new DataFormatoIncorretoException(e.getMessage());
                             }
                         }
+                        break;
                     }
                 }
                 case 3: {
