@@ -40,6 +40,7 @@ public class Main {
                     System.out.println("1 - Inserir um produto Eletrônico no sistema");
                     System.out.println("2 - Deletar um produto Eletrônico do sistema");
                     System.out.println("3 - Buscar informações de um produto Eletrônico no sistema");
+                    System.out.println("4 - Para alterar as informações de um produto Eletrônico no sistema");
                     int opProdEletronico = Integer.parseInt(sc.nextLine());
 
                     switch (opProdEletronico) {
@@ -113,6 +114,18 @@ public class Main {
                             }
                         }
                         break;
+                        case 4: {
+                            System.out.println("Informe o ID do produto que deseja modificar");
+                            System.out.print("ID: ");
+                            int idProdEletronico = Integer.parseInt(sc.nextLine());
+
+                            System.out.println("Você deseja alterar todas as informações ou apenas uma em especifíca?: (T/E): ");
+                            char opcaoAlterarInfo = sc.next().charAt(0);
+
+                            if (opcaoAlterarInfo == 'T' || opcaoAlterarInfo == 't') {
+
+                            }
+                        }
                     }
                 }
                 case 2: {

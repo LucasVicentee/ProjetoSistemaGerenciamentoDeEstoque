@@ -131,4 +131,9 @@ public class ProdutoEletronicoDAO {
             e.printStackTrace();
         }
     }
+
+    public void mudarInformacoesEspecificasProdutoEletronico(int id) {
+
+
+    }
 }
