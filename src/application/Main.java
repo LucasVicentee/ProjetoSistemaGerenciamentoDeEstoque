@@ -155,6 +155,9 @@ public class Main {
                                     ProdutoEletronicoDAO prodEletroDAO = new ProdutoEletronicoDAO();
                                     prodEletroDAO.alterarInformacoesEspecificasProdutoEletronico(idProdEletronico, novoNome, novoPreco, novaQuantidade, novaDataFabricacao, novoFabricante, novaGarantiaMeses, novaVoltagem);
                                 }
+                                else {
+
+                                }
                             }
                             catch (java.text.ParseException e) {
                                 throw new DataFormatoIncorretoException();
@@ -163,6 +166,7 @@ public class Main {
                         break;
                     }
                 }
+                break;
                 case 2: {
                     System.out.println("Produto de Limpeza selecionado, selecione o que deseja ser feito: ");
                     System.out.println("1 - Inserir um produto de Limpeza no sistema");
