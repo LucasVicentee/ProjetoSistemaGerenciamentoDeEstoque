@@ -133,6 +133,37 @@ public class ProdutoLimpezaDAO {
 
     public void alterarDadosEspecificosProdutoLimpeza(int id, String novoNome, double novoPreco, int novaQuantidade, Date novaDataFabricacao, String novoFabricante, String novaFragrancia, int novoVolumeMl, String novoUso) {
 
-        String slqProduto = "UPDATE "
+        String sqlNovosDadosProduto = "UPDATE produto SET nome = ?, preco = ?, quantidade = ?, data_fabricacao = ?, fabricante = ? WHERE id = ?";
+        String sqlNovosDadosProdutoLimpeza = "UPDATE produto_limpeza SET fragrancia = ?, volume_ml = ?, uso = ? WHERE id = ?";
+
+        try (Connection conn = Conexao.getConexao();
+        PreparedStatement psNovoProduto = conn.prepareStatement(sqlNovosDadosProduto);
+        PreparedStatement psNovoProdutoLimpeza = conn.prepareStatement(sqlNovosDadosProdutoLimpeza)){
+
+            psNovoProduto.setString(1, novoNome);
+            psNovoProduto.setDouble(2, novoPreco);
+            psNovoProduto.setInt(3, novaQuantidade);
+            psNovoProduto.setDate(4, new java.sql.Date(novaDataFabricacao.getTime()));
+            psNovoProduto.setString(5, novoFabricante);
+            psNovoProduto.setInt(6, id);
+
+            psNovoProdutoLimpeza.setString(1, novaFragrancia);
+            psNovoProdutoLimpeza.setInt(2, novoVolumeMl);
+            psNovoProdutoLimpeza.setString(3, novoUso);
+            psNovoProdutoLimpeza.setInt(4, id);
+
+            int linhasAfetadasProduto = psNovoProduto.executeUpdate();
+            int linhasAfetadasLimpeza = psNovoProduto.executeUpdate();
+
+            if (linhasAfetadasProduto == 0 || linhasAfetadasLimpeza == 0) {
+                throw new ProdutoNaoEncontradoException(id);
+            }
+            else {
+                System.out.println("Dados do produto atualizados com sucesso!");
+            }
+        }
+        catch (SQLException e) {
+            e.getMessage();
+        }
     }
 }
