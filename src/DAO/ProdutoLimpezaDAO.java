@@ -153,7 +153,7 @@ public class ProdutoLimpezaDAO {
             psNovoProdutoLimpeza.setInt(4, id);
 
             int linhasAfetadasProduto = psNovoProduto.executeUpdate();
-            int linhasAfetadasLimpeza = psNovoProduto.executeUpdate();
+            int linhasAfetadasLimpeza = psNovoProdutoLimpeza.executeUpdate();
 
             if (linhasAfetadasProduto == 0 || linhasAfetadasLimpeza == 0) {
                 throw new ProdutoNaoEncontradoException(id);

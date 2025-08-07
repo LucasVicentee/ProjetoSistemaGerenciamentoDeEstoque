@@ -176,8 +176,8 @@ public class Main {
                     System.out.println("2 - Deletar um produto de Limpeza do sistema");
                     System.out.println("3 - Buscar informações de um produto de Limpeza no sistema");
                     System.out.println("4 - Para alterar as informações de um produto de Limpeza no sistema");
+                    System.out.print("Opção: ");
                     int opProdLimpeza = Integer.parseInt(sc.nextLine());
-                    System.out.println("Opção: ");
 
                     switch (opProdLimpeza) {
                         case 1: {
@@ -284,7 +284,7 @@ public class Main {
                                     System.out.print("Volume em ML: ");
                                     int novoVolumeMl = Integer.parseInt(sc.nextLine());
 
-                                    System.out.print("Uso:");
+                                    System.out.print("Uso recomendado:");
                                     String novoUso = sc.nextLine();
 
                                     ProdutoLimpezaDAO prodLimpDAO = new ProdutoLimpezaDAO();
