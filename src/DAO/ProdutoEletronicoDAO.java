@@ -132,7 +132,7 @@ public class ProdutoEletronicoDAO {
         }
     }
 
-    public void alterarInformacoesEspecificasProdutoEletronico(int id, String novoNome, double novoPreco, int novaQuantidade, Date novaDataFabricacao, String novoFabricante, int novaGarantiaMeses, String novaVoltagem) {
+    public void alterarDadosEspecificosProdutoEletronico(int id, String novoNome, double novoPreco, int novaQuantidade, Date novaDataFabricacao, String novoFabricante, int novaGarantiaMeses, String novaVoltagem) {
 
         String sqlNovosDadosProduto = "UPDATE produto SET nome = ?, preco = ?, quantidade = ?, data_fabricacao = ?, fabricante = ? WHERE id = ?";
         String sqlNovosDadosProdutoEletronico = "UPDATE produto_eletronico SET garantia_meses = ?, voltagem = ? WHERE id = ?";

@@ -153,7 +153,7 @@ public class Main {
                                     String novaVoltagem = sc.nextLine();
 
                                     ProdutoEletronicoDAO prodEletroDAO = new ProdutoEletronicoDAO();
-                                    prodEletroDAO.alterarInformacoesEspecificasProdutoEletronico(idProdEletronico, novoNome, novoPreco, novaQuantidade, novaDataFabricacao, novoFabricante, novaGarantiaMeses, novaVoltagem);
+                                    prodEletroDAO.alterarDadosEspecificosProdutoEletronico(idProdEletronico, novoNome, novoPreco, novaQuantidade, novaDataFabricacao, novoFabricante, novaGarantiaMeses, novaVoltagem);
                                 }
                                 else if (opcaoAlterarInfo == 'E' || opcaoAlterarInfo == 'e'){
                                     System.out.println("Informe o ID do produto que deseja alterar o dado");

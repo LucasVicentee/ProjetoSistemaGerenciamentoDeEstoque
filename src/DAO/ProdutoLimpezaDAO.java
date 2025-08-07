@@ -130,4 +130,9 @@ public class ProdutoLimpezaDAO {
             e.printStackTrace();
         }
     }
+
+    public void alterarDadosEspecificosProdutoLimpeza(int id, String novoNome, double novoPreco, int novaQuantidade, Date novaDataFabricacao, String novoFabricante, String novaFragrancia, int novoVolumeMl, String novoUso) {
+
+        String slqProduto = "UPDATE "
+    }
 }
