@@ -132,8 +132,33 @@ public class ProdutoEletronicoDAO {
         }
     }
 
-    public void mudarInformacoesEspecificasProdutoEletronico(int id) {
+    public void mudarInformacoesEspecificasProdutoEletronico(int id, String novoNome, double novoPreco, int novaQuantidade, String novoFabricante, int novaGarantiaMeses, String novaVoltagem) {
 
+        String sqlNovosDadosProduto = "UPDATE produto SET nome = ?, preco = ?, quantidade = ?, data_fabricacao = ?, fabricante = ? WHERE id = id";
+        String sqlNovosDadosProdutoEletronico = "UPDATE produto_eletronico SET garantia_meses = ?, voltagem = ? WHERE id = id";
 
+        try (Connection conn = Conexao.getConexao();
+        PreparedStatement psNovoProduto = conn.prepareStatement(sqlNovosDadosProduto);
+        PreparedStatement psNovoProdutoEletronico = conn.prepareStatement(sqlNovosDadosProdutoEletronico)) {
+
+            //Atualizando na tabela de produto
+            psNovoProduto.setString(1, novoNome);
+            psNovoProduto.setDouble(2, novoPreco);
+            psNovoProduto.setDouble(3, novaQuantidade);
+            psNovoProduto.setString(4, novoFabricante);
+            psNovoProduto.setInt(5, id);
+            psNovoProduto.executeUpdate();
+
+            //Atualizando na tabela de produto_eletronico
+            psNovoProdutoEletronico.setInt(1, novaGarantiaMeses);
+            psNovoProdutoEletronico.setString(2, novaVoltagem);
+            psNovoProdutoEletronico.setInt(3, id);
+            psNovoProdutoEletronico.executeUpdate();
+
+            System.out.println("Dados do produto atualizados com sucesso!");
+
+        } catch (SQLException e) {
+            throw new ProdutoNaoEncontradoException(id);
+        }
     }
 }

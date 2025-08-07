@@ -115,15 +115,37 @@ public class Main {
                         }
                         break;
                         case 4: {
-                            System.out.println("Informe o ID do produto que deseja modificar");
-                            System.out.print("ID: ");
-                            int idProdEletronico = Integer.parseInt(sc.nextLine());
+                            try {
+                                System.out.println("Alterar todas as informações selecionada!");
+                                System.out.println("Informe o ID do produto que deseja modificar");
+                                System.out.print("ID: ");
+                                int idProdEletronico = Integer.parseInt(sc.nextLine());
 
-                            System.out.println("Você deseja alterar todas as informações ou apenas uma em especifíca?: (T/E): ");
-                            char opcaoAlterarInfo = sc.next().charAt(0);
+                                System.out.println("Você deseja alterar todas as informações ou apenas uma em especifíca?: (T/E): ");
+                                char opcaoAlterarInfo = sc.next().charAt(0);
 
-                            if (opcaoAlterarInfo == 'T' || opcaoAlterarInfo == 't') {
-
+                                if (opcaoAlterarInfo == 'T' || opcaoAlterarInfo == 't') {
+                                    System.out.println("Informe os dados que serão alterados do produto eletrônico");
+                                    System.out.println("Nome: ");
+                                    String NovoNome = sc.nextLine();
+                                    System.out.print("Preço: ");
+                                    double novoPreco = Double.parseDouble(sc.nextLine());
+                                    System.out.print("Quantidade: ");
+                                    int novaQuantidade = Integer.parseInt(sc.nextLine());
+                                    System.out.print("Data de fabricação (dd/MM/yyyy): ");
+                                    String novaDataString = sc.nextLine();
+                                    Date utilDate = sdf.parse(novaDataString);
+                                    java.sql.Date novaDataFabricacao = new java.sql.Date(utilDate.getTime());
+                                    System.out.print("Fabricante: ");
+                                    String novoFabricante = sc.nextLine();
+                                    System.out.print("Garantia em meses: ");
+                                    int novaGarantiaMeses = Integer.parseInt(sc.nextLine());
+                                    System.out.print("Voltagem: ");
+                                    String novaVoltagem = sc.nextLine();
+                                }
+                            }
+                            catch (java.text.ParseException e) {
+                                throw new DataFormatoIncorretoException();
                             }
                         }
                     }
