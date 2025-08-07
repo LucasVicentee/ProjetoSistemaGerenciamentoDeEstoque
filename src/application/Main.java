@@ -155,8 +155,11 @@ public class Main {
                                     ProdutoEletronicoDAO prodEletroDAO = new ProdutoEletronicoDAO();
                                     prodEletroDAO.alterarInformacoesEspecificasProdutoEletronico(idProdEletronico, novoNome, novoPreco, novaQuantidade, novaDataFabricacao, novoFabricante, novaGarantiaMeses, novaVoltagem);
                                 }
-                                else {
-
+                                else if (opcaoAlterarInfo == 'E' || opcaoAlterarInfo == 'e'){
+                                    System.out.println("Informe o ID do produto que deseja alterar o dado");
+                                    System.out.print("ID: ");
+                                    idProdEletronico = Integer.parseInt(sc.nextLine());
+                                    System.out.println("");
                                 }
                             }
                             catch (java.text.ParseException e) {
