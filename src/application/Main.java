@@ -41,6 +41,7 @@ public class Main {
                     System.out.println("2 - Deletar um produto Eletrônico do sistema");
                     System.out.println("3 - Buscar informações de um produto Eletrônico no sistema");
                     System.out.println("4 - Para alterar as informações de um produto Eletrônico no sistema");
+                    System.out.print("Opção: ");
                     int opProdEletronico = Integer.parseInt(sc.nextLine());
 
                     switch (opProdEletronico) {
@@ -121,33 +122,45 @@ public class Main {
                                 System.out.print("ID: ");
                                 int idProdEletronico = Integer.parseInt(sc.nextLine());
 
-                                System.out.println("Você deseja alterar todas as informações ou apenas uma em especifíca?: (T/E): ");
+                                System.out.print("Você deseja alterar todas as informações ou apenas uma em especifíca?: (T/E): ");
                                 char opcaoAlterarInfo = sc.next().charAt(0);
 
                                 if (opcaoAlterarInfo == 'T' || opcaoAlterarInfo == 't') {
                                     System.out.println("Informe os dados que serão alterados do produto eletrônico");
-                                    System.out.println("Nome: ");
-                                    String NovoNome = sc.nextLine();
+
+                                    System.out.print("Nome: ");
+                                    String novoNome = sc.nextLine();
+                                    sc.nextLine();
+
                                     System.out.print("Preço: ");
                                     double novoPreco = Double.parseDouble(sc.nextLine());
+
                                     System.out.print("Quantidade: ");
                                     int novaQuantidade = Integer.parseInt(sc.nextLine());
+
                                     System.out.print("Data de fabricação (dd/MM/yyyy): ");
                                     String novaDataString = sc.nextLine();
                                     Date utilDate = sdf.parse(novaDataString);
                                     java.sql.Date novaDataFabricacao = new java.sql.Date(utilDate.getTime());
+
                                     System.out.print("Fabricante: ");
                                     String novoFabricante = sc.nextLine();
+
                                     System.out.print("Garantia em meses: ");
                                     int novaGarantiaMeses = Integer.parseInt(sc.nextLine());
+
                                     System.out.print("Voltagem: ");
                                     String novaVoltagem = sc.nextLine();
+
+                                    ProdutoEletronicoDAO prodEletroDAO = new ProdutoEletronicoDAO();
+                                    prodEletroDAO.alterarInformacoesEspecificasProdutoEletronico(idProdEletronico, novoNome, novoPreco, novaQuantidade, novaDataFabricacao, novoFabricante, novaGarantiaMeses, novaVoltagem);
                                 }
                             }
                             catch (java.text.ParseException e) {
                                 throw new DataFormatoIncorretoException();
                             }
                         }
+                        break;
                     }
                 }
                 case 2: {

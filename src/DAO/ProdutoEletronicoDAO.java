@@ -132,10 +132,10 @@ public class ProdutoEletronicoDAO {
         }
     }
 
-    public void mudarInformacoesEspecificasProdutoEletronico(int id, String novoNome, double novoPreco, int novaQuantidade, String novoFabricante, int novaGarantiaMeses, String novaVoltagem) {
+    public void alterarInformacoesEspecificasProdutoEletronico(int id, String novoNome, double novoPreco, int novaQuantidade, Date novaDataFabricacao, String novoFabricante, int novaGarantiaMeses, String novaVoltagem) {
 
-        String sqlNovosDadosProduto = "UPDATE produto SET nome = ?, preco = ?, quantidade = ?, data_fabricacao = ?, fabricante = ? WHERE id = id";
-        String sqlNovosDadosProdutoEletronico = "UPDATE produto_eletronico SET garantia_meses = ?, voltagem = ? WHERE id = id";
+        String sqlNovosDadosProduto = "UPDATE produto SET nome = ?, preco = ?, quantidade = ?, data_fabricacao = ?, fabricante = ? WHERE id = ?";
+        String sqlNovosDadosProdutoEletronico = "UPDATE produto_eletronico SET garantia_meses = ?, voltagem = ? WHERE id = ?";
 
         try (Connection conn = Conexao.getConexao();
         PreparedStatement psNovoProduto = conn.prepareStatement(sqlNovosDadosProduto);
@@ -144,21 +144,28 @@ public class ProdutoEletronicoDAO {
             //Atualizando na tabela de produto
             psNovoProduto.setString(1, novoNome);
             psNovoProduto.setDouble(2, novoPreco);
-            psNovoProduto.setDouble(3, novaQuantidade);
-            psNovoProduto.setString(4, novoFabricante);
-            psNovoProduto.setInt(5, id);
-            psNovoProduto.executeUpdate();
+            psNovoProduto.setInt(3, novaQuantidade);
+            psNovoProduto.setDate(4, new java.sql.Date(novaDataFabricacao.getTime()));
+            psNovoProduto.setString(5, novoFabricante);
+            psNovoProduto.setInt(6, id);
 
             //Atualizando na tabela de produto_eletronico
             psNovoProdutoEletronico.setInt(1, novaGarantiaMeses);
             psNovoProdutoEletronico.setString(2, novaVoltagem);
             psNovoProdutoEletronico.setInt(3, id);
-            psNovoProdutoEletronico.executeUpdate();
 
-            System.out.println("Dados do produto atualizados com sucesso!");
+            int linhasAfetadasProduto = psNovoProduto.executeUpdate();
+            int linhasAfetadasEletronico = psNovoProdutoEletronico.executeUpdate();
+
+            if (linhasAfetadasProduto == 0 || linhasAfetadasEletronico == 0) {
+                throw new ProdutoNaoEncontradoException(id);
+            }
+            else {
+                System.out.println("Dados do produto atualizados com sucesso!");
+            }
 
         } catch (SQLException e) {
-            throw new ProdutoNaoEncontradoException(id);
+            e.getMessage();
         }
     }
 }
