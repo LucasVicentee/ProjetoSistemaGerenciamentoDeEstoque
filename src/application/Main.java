@@ -175,6 +175,7 @@ public class Main {
                     System.out.println("1 - Inserir um produto de Limpeza no sistema");
                     System.out.println("2 - Deletar um produto de Limpeza do sistema");
                     System.out.println("3 - Buscar informações de um produto de Limpeza no sistema");
+                    System.out.println("4 - Para alterar as informações de um produto de Limpeza no sistema");
                     int opProdLimpeza = Integer.parseInt(sc.nextLine());
                     System.out.println("Opção: ");
 
@@ -247,6 +248,26 @@ public class Main {
                             }
                         }
                         break;
+                        case 4: {
+                            try {
+                                System.out.println("Alterar dados de um produto selecionado!");
+                                System.out.println("Informe o ID do produto que deseja ser alterado os dados");
+                                System.out.print("ID: ");
+                                int idProdLimpeza = Integer.parseInt(sc.nextLine());
+
+                                System.out.print("Você deseja alterar todas as informações ou apenas uma em especifíca?: (T/E): ");
+                                char opcaoAlterarInfo = sc.next().charAt(0);
+                                sc.nextLine();
+
+                                if (opcaoAlterarInfo == 'T' || opcaoAlterarInfo == 't') {
+                                    System.out.println("Informe os novos dados do produto de limpeza");
+                                    System.out.print("Nome: ");
+                                }
+                            }
+                            catch () {
+
+                            }
+                        }
                     }
                 }
                 case 3: {
