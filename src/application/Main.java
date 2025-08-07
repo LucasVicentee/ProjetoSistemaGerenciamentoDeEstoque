@@ -124,13 +124,13 @@ public class Main {
 
                                 System.out.print("Você deseja alterar todas as informações ou apenas uma em especifíca?: (T/E): ");
                                 char opcaoAlterarInfo = sc.next().charAt(0);
+                                sc.nextLine();
 
                                 if (opcaoAlterarInfo == 'T' || opcaoAlterarInfo == 't') {
                                     System.out.println("Informe os dados que serão alterados do produto eletrônico");
 
                                     System.out.print("Nome: ");
                                     String novoNome = sc.nextLine();
-                                    sc.nextLine();
 
                                     System.out.print("Preço: ");
                                     double novoPreco = Double.parseDouble(sc.nextLine());
@@ -173,7 +173,6 @@ public class Main {
                     System.out.println("2 - Deletar um produto de Limpeza do sistema");
                     System.out.println("3 - Buscar informações de um produto de Limpeza no sistema");
                     int opProdLimpeza = Integer.parseInt(sc.nextLine());
-
                     System.out.println("Opção: ");
 
                     switch (opProdLimpeza) {
