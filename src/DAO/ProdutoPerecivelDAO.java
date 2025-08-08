@@ -125,4 +125,23 @@ public class ProdutoPerecivelDAO {
             throw new RuntimeException(e);
         }
     }
+
+    public void alterarDadosProdutoPerecivel(int id, String novoNome, double novoPreco, int novaQuantidade, Date novaDataFabricacao, String novoFabricante, Date novaDataVencimento, String novoTipoProduto, double novoPesoGramas, String novaTemperaturaArmazenamento) {
+
+        String sqlAlterarDadosProduto = "UPDATE produto SET nome = ?, preco = ?, quantidade = ?, data_fabricacao = ?, fabricante = ? WHERE id = ?";
+        String sqlAlterarDadosProdutoPerecivel = "UPDATE produto_perecivel SET data_vencimento = ?, tipo_produto = ?, peso_gramas = ?, temperatura_armazenamento = ? WHERE id = ?";
+
+        try (Connection conn = Conexao.getConexao();
+        PreparedStatement psProduto = conn.prepareStatement(sqlAlterarDadosProduto);
+        PreparedStatement psProdutoPerecivel = conn.prepareStatement(sqlAlterarDadosProdutoPerecivel)){
+
+            psProduto.setString(1, novoNome);
+            psProduto.setDouble(2, novoPreco);
+            psProd
+
+        }
+        catch (SQLException e) {
+            e.getMessage();
+        }
+    }
 }
