@@ -137,8 +137,26 @@ public class ProdutoPerecivelDAO {
 
             psProduto.setString(1, novoNome);
             psProduto.setDouble(2, novoPreco);
-            psProd
+            psProduto.setInt(3, novaQuantidade);
+            psProduto.setDate(4, new java.sql.Date(novaDataFabricacao.getTime()));
+            psProduto.setString(5, novoFabricante);
+            psProduto.setInt(6, id);
 
+            psProdutoPerecivel.setDate(1, new java.sql.Date(novaDataVencimento.getTime()));
+            psProdutoPerecivel.setString(2, novoTipoProduto);
+            psProdutoPerecivel.setDouble(3, novoPesoGramas);
+            psProdutoPerecivel.setString(4, novaTemperaturaArmazenamento);
+            psProdutoPerecivel.setInt(5, id);
+
+            int dadosAlteradosProduto = psProduto.executeUpdate();
+            int dadosAlteradosProdutoPerecivel = psProdutoPerecivel.executeUpdate();
+
+            if (dadosAlteradosProduto == 0 || dadosAlteradosProdutoPerecivel == 0) {
+                throw new ProdutoNaoEncontradoException(id);
+            }
+            else {
+                System.out.println("Dados do produto alterados com sucesso!");
+            }
         }
         catch (SQLException e) {
             e.getMessage();
