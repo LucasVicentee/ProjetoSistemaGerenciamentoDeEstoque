@@ -304,6 +304,7 @@ public class Main {
                     System.out.println("1 - Inserir um produto perecível no sistema");
                     System.out.println("2 - Deletar um produto perecível do sistema");
                     System.out.println("3 - Buscar informações de um produto perecível no sistema");
+                    System.out.println("4 - Para alterar os dados de um produto perecível");
                     System.out.print("Opção: ");
                     int opProdPerecivel = Integer.parseInt(sc.nextLine());
 
@@ -384,6 +385,15 @@ public class Main {
                             }
                         }
                         break;
+                        case 4: {
+                            try {
+                                System.out.println("Alteração dos dados de um produto perecível selecionado");
+
+                            }
+                            catch () {
+
+                            }
+                        }
                     }
                 }
             }
