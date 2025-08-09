@@ -128,7 +128,8 @@ public class Main {
                                 sc.nextLine();
 
                                 if (opcaoAlterarInfo == 'T' || opcaoAlterarInfo == 't') {
-                                    System.out.println("Informe os dados que serão alterados do produto eletrônico");
+                                    System.out.println("opção de alterar todos os dados selecionado!");
+                                    System.out.println("Informe os dados abaixo para que sejam alterados no sistema");
 
                                     System.out.print("Nome: ");
                                     String novoNome = sc.nextLine();
@@ -157,10 +158,10 @@ public class Main {
                                     prodEletroDAO.alterarDadosEspecificosProdutoEletronico(idProdEletronico, novoNome, novoPreco, novaQuantidade, novaDataFabricacao, novoFabricante, novaGarantiaMeses, novaVoltagem);
                                 }
                                 else if (opcaoAlterarInfo == 'E' || opcaoAlterarInfo == 'e'){
-                                    System.out.println("Informe o ID do produto que deseja alterar o dado");
+                                    System.out.println("Alteração de um dado específico selecionado!");
+                                    System.out.println("Informe os dados abaixo para que sejam alterados no sistema");
                                     System.out.print("ID: ");
                                     idProdEletronico = Integer.parseInt(sc.nextLine());
-                                    System.out.println("");
                                 }
                             }
                             catch (java.text.ParseException e) {
@@ -261,7 +262,8 @@ public class Main {
                                 sc.nextLine();
 
                                 if (opcaoAlterarInfo == 'T' || opcaoAlterarInfo == 't') {
-                                    System.out.println("Informe os novos dados do produto de limpeza");
+                                    System.out.println("Opção de alterar todos os dados selecionado!");
+                                    System.out.println("Informe os dados abaixo para que sejam alterados no sistema");
                                     System.out.print("Nome: ");
                                     String novoNome = sc.nextLine();
 
@@ -290,6 +292,10 @@ public class Main {
 
                                     ProdutoLimpezaDAO prodLimpDAO = new ProdutoLimpezaDAO();
                                     prodLimpDAO.alterarDadosEspecificosProdutoLimpeza(idProdLimpeza, novoNome, novoPreco, novaQuantidade, novaDataFabricacao, novoFabricante, novaFragrancia, novoVolumeMl, novoUso);
+                                }
+                                else if (opcaoAlterarInfo == 'E' || opcaoAlterarInfo == 'e') {
+                                    System.out.println("Alteração de um dado específico selecionado!");
+                                    System.out.println("Informe os dados abaixo para que sejam alterados no sistema");
                                 }
                             }
                             catch (java.text.ParseException e) {
@@ -393,8 +399,9 @@ public class Main {
                                 System.out.print("ID: ");
                                 int idProdPerecivel = Integer.parseInt(sc.nextLine());
 
-                                System.out.println("Você deseja alterar todos os dados ou um em específico? (T/E): ");
+                                System.out.print("Você deseja alterar todos os dados ou um em específico? (T/E): ");
                                 char opcaoAlterarInfo = sc.next().charAt(0);
+                                sc.nextLine();
 
                                 if (opcaoAlterarInfo == 'T' || opcaoAlterarInfo == 't') {
                                     System.out.println("Opção de alterar todos os dados selecionado!");
@@ -435,7 +442,7 @@ public class Main {
                                     prodPereciDAO.alterarDadosEspecificosProdutoPerecivel(idProdPerecivel, novoNome, novoPreco, novaQuantidade, novaDataFabricacao, novoFabricante,novaDataVencimento, novoTipoProduto, novoPesoGramas, novaTemperaturaArmazenamento);
                                 }
                                 else if (opcaoAlterarInfo == 'E' || opcaoAlterarInfo == 'e') {
-                                    System.out.println("Alteração de dados em específico selecionado!");
+                                    System.out.println("Alteração de um dado específico selecionado!");
                                     System.out.println("Informe o ID do produto que deseja alterar os dados");
                                     System.out.print("ID: ");
                                 }
