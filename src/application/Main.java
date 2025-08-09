@@ -2,6 +2,7 @@ package application;
 
 import DAO.ProdutoLimpezaDAO;
 import DAO.ProdutoPerecivelDAO;
+import com.sun.source.tree.IfTree;
 import entities.ProdutoLimpeza;
 import entities.ProdutoPerecivel;
 import exceptions.DataFormatoIncorretoException;
@@ -387,11 +388,60 @@ public class Main {
                         break;
                         case 4: {
                             try {
-                                System.out.println("Alteração dos dados de um produto perecível selecionado");
+                                System.out.println("Alteração dos dados de um produto selecionado!");
+                                System.out.println("Informe o ID do produto que deseja alterar os dados");
+                                System.out.print("ID: ");
+                                int idProdPerecivel = Integer.parseInt(sc.nextLine());
 
+                                System.out.println("Você deseja alterar todos os dados ou um em específico? (T/E): ");
+                                char opcaoAlterarInfo = sc.next().charAt(0);
+
+                                if (opcaoAlterarInfo == 'T' || opcaoAlterarInfo == 't') {
+                                    System.out.println("Opção de alterar todos os dados selecionado!");
+                                    System.out.println("Informe os dados abaixo para que sejam alterados no sistema");
+
+                                    System.out.print("Nome: ");
+                                    String novoNome = sc.nextLine();
+
+                                    System.out.print("Preço: ");
+                                    double novoPreco = Double.parseDouble(sc.nextLine());
+
+                                    System.out.print("Quantidade: ");
+                                    int novaQuantidade = Integer.parseInt(sc.nextLine());
+
+                                    System.out.print("Data de fabricação (dd/MM/yyyy): ");
+                                    String novaDataFabri = sc.nextLine();
+                                    Date utilDateFabri = sdf.parse(novaDataFabri);
+                                    java.sql.Date novaDataFabricacao = new java.sql.Date(utilDateFabri.getTime());
+
+                                    System.out.print("Fabricante: ");
+                                    String novoFabricante = sc.nextLine();
+
+                                    System.out.print("Data de vencimento (dd/MM/yyyy): ");
+                                    String novaDataVenci = sc.nextLine();
+                                    Date utilDateVenci = sdf.parse(novaDataVenci);
+                                    java.sql.Date novaDataVencimento = new java.sql.Date(utilDateVenci.getTime());
+
+                                    System.out.print("Tipo do produto: ");
+                                    String novoTipoProduto = sc.nextLine();
+
+                                    System.out.print("Peso em gramas: ");
+                                    double novoPesoGramas = Double.parseDouble(sc.nextLine());
+
+                                    System.out.print("Temperatura de armazenamento: ");
+                                    String novaTemperaturaArmazenamento = sc.nextLine();
+
+                                    ProdutoPerecivelDAO prodPereciDAO = new ProdutoPerecivelDAO();
+                                    prodPereciDAO.alterarDadosProdutoPerecivel(idProdPerecivel, novoNome, novoPreco, novaQuantidade, novaDataFabricacao, novoFabricante,novaDataVencimento, novoTipoProduto, novoPesoGramas, novaTemperaturaArmazenamento);
+                                }
+                                else if (opcaoAlterarInfo == 'E' || opcaoAlterarInfo == 'e') {
+                                    System.out.println("Alteração de dados em específico selecionado!");
+                                    System.out.println("Informe o ID do produto que deseja alterar os dados");
+                                    System.out.print("ID: ");
+                                }
                             }
-                            catch () {
-
+                            catch (java.text.ParseException e) {
+                                throw new DataFormatoIncorretoException(e.getMessage());
                             }
                         }
                     }
