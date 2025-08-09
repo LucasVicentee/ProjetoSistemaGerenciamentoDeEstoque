@@ -432,7 +432,7 @@ public class Main {
                                     String novaTemperaturaArmazenamento = sc.nextLine();
 
                                     ProdutoPerecivelDAO prodPereciDAO = new ProdutoPerecivelDAO();
-                                    prodPereciDAO.alterarDadosProdutoPerecivel(idProdPerecivel, novoNome, novoPreco, novaQuantidade, novaDataFabricacao, novoFabricante,novaDataVencimento, novoTipoProduto, novoPesoGramas, novaTemperaturaArmazenamento);
+                                    prodPereciDAO.alterarDadosEspecificosProdutoPerecivel(idProdPerecivel, novoNome, novoPreco, novaQuantidade, novaDataFabricacao, novoFabricante,novaDataVencimento, novoTipoProduto, novoPesoGramas, novaTemperaturaArmazenamento);
                                 }
                                 else if (opcaoAlterarInfo == 'E' || opcaoAlterarInfo == 'e') {
                                     System.out.println("Alteração de dados em específico selecionado!");
