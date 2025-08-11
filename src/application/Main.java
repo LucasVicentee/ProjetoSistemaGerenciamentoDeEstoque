@@ -159,11 +159,8 @@ public class Main {
                                 }
                                 else if (opcaoAlterarInfo == 'E' || opcaoAlterarInfo == 'e'){
                                     System.out.println("Alteração de um dado específico selecionado!");
-                                    System.out.println("Informe os dados abaixo para que sejam alterados no sistema");
-                                    System.out.print("ID: ");
-                                    idProdEletronico = Integer.parseInt(sc.nextLine());
 
-                                    System.out.println("Informe qual campo deseja altear o dado já existente");
+                                    System.out.println("Informe qual campo deseja alterar o dado já existente");
                                     System.out.println("1 - Para alterar o nome");
                                     System.out.println("2 - Para alterar o preço");
                                     System.out.println("3 - Para alterar a quantidade");
@@ -171,6 +168,7 @@ public class Main {
                                     System.out.println("5 - Para alterar o fabricante");
                                     System.out.println("6 - Para alterar a garantia em meses");
                                     System.out.println("7 - Para alterar a voltagem");
+                                    System.out.print("Opção: ");
                                     int opEscolhaAlterarDado = Integer.parseInt(sc.nextLine());
 
                                     String campo = "";
