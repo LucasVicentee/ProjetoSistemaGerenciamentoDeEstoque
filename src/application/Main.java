@@ -402,7 +402,8 @@ public class Main {
                                     System.out.println("8 - Para alterar o uso recomendado");
 
                                     System.out.print("Opção: ");
-                                    int opEscolhaAlterarDado = Integer.parseInt(sc.nextLine());
+                                    int opEscolhaAlterarDado = sc.nextInt();
+                                    sc.nextLine();
 
                                     String campo = "";
                                     Object novoValor = null;
