@@ -169,5 +169,34 @@ public class ProdutoLimpezaDAO {
 
     public void alterarDadosEspecificosProdutoLimpeza(int id, String campo, Object novoDado) {
 
+        String sql;
+
+        boolean campoDasTabelas = campo.equals("nome") || campo.equals("preco") || campo.equals("quantidade") || campo.equals("data_fabricacao") || campo.equals("fabricante");
+
+        if (campoDasTabelas) {
+            sql = "UPDATE produto SET " + campo + " WHERE id = ?";
+        }
+        else {
+            sql = "UPDATE produto_limpeza SET " + campo + " WHERE id = ?";
+        }
+
+        try (Connection conn = Conexao.getConexao();
+        PreparedStatement ps = conn.prepareStatement(sql)){
+
+            ps.setObject(1, novoDado);
+            ps.setInt(2, id);
+
+            int linhasAfetadas = ps.executeUpdate();
+
+            if (linhasAfetadas == 0) {
+                throw new ProdutoNaoEncontradoException(id);
+            }
+            else {
+                System.out.println("Dados atualizados com sucesso!");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
