@@ -169,7 +169,37 @@ public class ProdutoEletronicoDAO {
         }
     }
 
-    public void alterarDadosEspecificos() {
+    public void alterarDadosEspecificosProdutoEletronico(int id, String campo, Object novoValor) {
 
+        String sql;
+
+        boolean campoDasTabelas = campo.equals("nome") || campo.equals("preco") || campo.equals("quantidade") || campo.equals("data_fabricacao") || campo.equals("fabricante");
+
+        if (campoDasTabelas) {
+            sql = "UPDATE produto SET " + campo + " = ? WHERE id = ?";
+        }
+        else {
+            sql = "UPDATE produto_eletronico SET " + campo + " = ? WHERE id = ?";
+        }
+
+        try (Connection conn = Conexao.getConexao();
+        PreparedStatement ps = conn.prepareStatement(sql);){
+
+            ps.setObject(1, novoValor);
+            ps.setInt(2, id);
+
+
+            int linhasAfetadas = ps.executeUpdate();
+
+            if (linhasAfetadas == 0) {
+                throw new ProdutoNaoEncontradoException(id);
+            }
+            else {
+                System.out.println("Dado alterado com sucesso!");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
