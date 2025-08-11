@@ -162,6 +162,9 @@ public class Main {
                                     System.out.println("Informe os dados abaixo para que sejam alterados no sistema");
                                     System.out.print("ID: ");
                                     idProdEletronico = Integer.parseInt(sc.nextLine());
+
+                                    System.out.println("Informe qual campo deseja altear o dado já existente");
+
                                 }
                             }
                             catch (java.text.ParseException e) {
