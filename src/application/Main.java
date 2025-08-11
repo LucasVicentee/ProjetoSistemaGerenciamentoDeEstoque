@@ -406,6 +406,78 @@ public class Main {
 
                                     String campo = "";
                                     Object novoValor = null;
+
+                                    switch (opEscolhaAlterarDado) {
+                                        case 1: {
+                                            campo = "nome";
+
+                                            System.out.println("Insira o novo  nome");
+                                            System.out.print("Nome: ");
+                                            novoValor = sc.nextLine();
+                                        }
+                                        break;
+                                        case 2: {
+                                            campo = "preco";
+
+                                            System.out.println("Insira o novo preço");
+                                            System.out.print("Preço: ");
+                                            novoValor = Double.parseDouble(sc.nextLine());
+                                        }
+                                        break;
+                                        case 3: {
+                                            campo = "quantidade";
+
+                                            System.out.println("Informe a nova quantidade:");
+                                            System.out.print("QUantidade: ");
+                                            novoValor = Integer.parseInt(sc.nextLine());
+                                        }
+                                        break;
+                                        case 4: {
+                                            campo = "data_fabricacao";
+
+                                            System.out.println("Informe a nova data de fabricação");
+                                            System.out.print("Data de fabricação: (dd/MM/yyyy): ");
+                                            String dataFabricacao = sc.nextLine();
+                                            Date utilDate = sdf.parse(dataFabricacao);
+                                            java.sql.Date novaDataFabricacao= new java.sql.Date(utilDate.getTime());
+                                            novoValor = novaDataFabricacao;
+                                        }
+                                        break;
+                                        case 5: {
+                                            campo = "fabricante";
+
+                                            System.out.println("Informe a nova fabricante: ");
+                                            System.out.print("Fabricante: ");
+                                            novoValor = sc.nextLine();
+                                        }
+                                        break;
+                                        case 6: {
+                                            campo = "fragrancia";
+
+                                            System.out.println("Informe a nova fragância");
+                                            System.out.print("Fragrância: ");
+                                            novoValor = sc.nextLine();
+                                        }
+                                        break;
+                                        case 7: {
+                                            campo = "volume_ml";
+
+                                            System.out.println("Informe o novo volume em ML");
+                                            System.out.print("Volume em ML: ");
+                                            novoValor = Integer.parseInt(sc.nextLine());
+                                        }
+                                        break;
+                                        case 8: {
+                                            campo = "uso";
+
+                                            System.out.println("Informe o novo tipo de uso");
+                                            System.out.print("Uso: ");
+                                            novoValor = sc.nextLine();
+                                        }
+                                        break;
+                                    }
+                                    ProdutoLimpezaDAO prodLimpDAO = new ProdutoLimpezaDAO();
+                                    prodLimpDAO.alterarDadosEspecificosProdutoLimpeza(idProdLimpeza, campo, novoValor);
                                 }
                             }
                             catch (ParseException e) {
