@@ -164,7 +164,95 @@ public class Main {
                                     idProdEletronico = Integer.parseInt(sc.nextLine());
 
                                     System.out.println("Informe qual campo deseja altear o dado já existente");
+                                    System.out.println("1 - Para alterar o nome");
+                                    System.out.println("2 - Para alterar o preço");
+                                    System.out.println("3 - Para alterar a quantidade");
+                                    System.out.println("4 - Para alterar a data de fabricação");
+                                    System.out.println("5 - Para alterar o fabricante");
+                                    System.out.println("6 - Para alterar a garantia em meses");
+                                    System.out.println("7 - Para alterar a voltagem");
+                                    int opEscolhaAlterarDado = Integer.parseInt(sc.nextLine());
 
+                                    String campo = "";
+                                    Object novoValor = null;
+
+                                    switch (opEscolhaAlterarDado) {
+                                        case 1: {
+                                            campo = "nome";
+
+                                            System.out.println("Opção de alterar o nome selecionada!");
+                                            System.out.println("Informe o novo nome");
+
+                                            System.out.print("Nome: ");
+                                            novoValor = sc.nextLine();
+                                        }
+                                        break;
+                                        case 2: {
+                                            campo = "preco";
+
+                                            System.out.println("Opção de alterar o preço selecionada!");
+                                            System.out.println("Informe o novo preço");
+
+                                            System.out.print("Preço: ");
+                                            novoValor = Double.parseDouble(sc.nextLine());
+                                        }
+                                        break;
+                                        case 3: {
+                                            campo = "quantidade";
+
+                                            System.out.println("Opção de alterar a quantidade selecionada!");
+                                            System.out.println("Informe a nova quantidade");
+
+                                            System.out.print("Quantidade: ");
+                                            novoValor = Integer.parseInt(sc.nextLine());
+                                        }
+                                        break;
+                                        case 4: {
+                                            campo = "data_fabricacao";
+
+                                            System.out.println("Opção de alterar a data de fabricação selecionada!");
+                                            System.out.println("Informe a nova data de fabricação");
+
+                                            System.out.print("Data de fabricação (dd/MM/yyyy): ");
+                                            String novaData = sc.nextLine();
+                                            Date utilDate = sdf.parse(novaData);
+                                            java.sql.Date novaDataFormatada = new java.sql.Date(utilDate.getTime());
+                                            novoValor = novaDataFormatada;
+                                        }
+                                        break;
+                                        case 5: {
+                                            campo = "fabricante";
+
+                                            System.out.println("Opção de alterar o fabricante selecionada!");
+                                            System.out.println("Informe o novo fabricante");
+
+                                            System.out.print("Fabricante: ");
+                                            novoValor = sc.nextLine();
+                                        }
+                                        break;
+                                        case 6: {
+                                            campo = "garantia_meses";
+
+                                            System.out.println("Opção de alterar a garantia em meses selecionada!");
+                                            System.out.println("Informe a nova garantia em meses: ");
+
+                                            System.out.print("Garantia em meses: ");
+                                            novoValor = Integer.parseInt(sc.nextLine());
+                                        }
+                                        break;
+                                        case 7: {
+                                            campo = "voltagem";
+
+                                            System.out.println("Opção de alterar a voltagem selecionada!");
+                                            System.out.println("Informe a nova voltagem");
+
+                                            System.out.print("Voltagem: ");
+                                            novoValor = Integer.parseInt(sc.nextLine());
+                                        }
+                                        break;
+                                    }
+                                    ProdutoEletronicoDAO prodEletroDAO = new ProdutoEletronicoDAO();
+                                    prodEletroDAO.alterarDadosEspecificosProdutoEletronico(idProdEletronico, campo, novoValor);
                                 }
                             }
                             catch (java.text.ParseException e) {
