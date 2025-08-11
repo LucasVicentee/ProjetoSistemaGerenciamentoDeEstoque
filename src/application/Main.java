@@ -255,9 +255,11 @@ public class Main {
                                         prodEletroDAO.alterarDadosEspecificosProdutoEletronico(idProdEletronico, campo, novoValor);
                                     }
                                     System.out.println("Deseja alterar mais dados de um produto eletrônico? (S/N): ");
+                                    System.out.print("Opção: ");
                                     char repeticaoAlterarDadosProdEletronico = sc.next().charAt(0);
                                 }
                                 while (repeticaoAlterarDadosProdELetronico == 'S' || repeticaoAlterarDadosProdELetronico == 's');
+                                System.out.println("Saindo...");
                             }
                             catch (ParseException e) {
                                 throw new DataFormatoIncorretoException();
@@ -484,10 +486,11 @@ public class Main {
                                         prodLimpDAO.alterarDadosEspecificosProdutoLimpeza(idProdLimpeza, campo, novoValor);
                                     }
                                     System.out.println("Deseja alterar mais dados de um produto de limpeza? (S/N): ");
-                                    repeticaoAlterarDadosProdLimpeza = sc.next().charAt(0);
                                     System.out.print("Opção: ");
+                                    repeticaoAlterarDadosProdLimpeza = sc.next().charAt(0);
                                 }
                                 while (repeticaoAlterarDadosProdLimpeza == 'S' || repeticaoAlterarDadosProdLimpeza == 's');
+                                System.out.println("Saindo...");
                             }
                             catch (ParseException e) {
                                 throw new DataFormatoIncorretoException(e.getMessage());
