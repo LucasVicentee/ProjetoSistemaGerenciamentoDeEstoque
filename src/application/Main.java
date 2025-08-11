@@ -123,7 +123,8 @@ public class Main {
                                     System.out.println("Alterar as informações selecionada!");
                                     System.out.println("Informe o ID do produto que deseja modificar");
                                     System.out.print("ID: ");
-                                    int idProdEletronico = Integer.parseInt(sc.nextLine());
+                                    int idProdEletronico = sc.nextInt();
+                                    sc.nextLine();
 
                                     System.out.print("Você deseja alterar todas as informações ou apenas uma em especifíca?: (T/E): ");
                                     char opcaoAlterarInfo = sc.next().charAt(0);
@@ -564,6 +565,7 @@ public class Main {
                 }
             }
             System.out.println("Deseja continuar no menu de interação? (S/N): ");
+            System.out.print("Opção: ");
             repeticao = sc.next().charAt(0);
         }
         while (repeticao == 'S' || repeticao == 's');
