@@ -167,23 +167,23 @@ public class ProdutoLimpezaDAO {
         }
     }
 
-    public void alterarDadosEspecificosProdutoLimpeza(int id, String campo, Object novoDado) {
+    public void alterarDadosEspecificosProdutoLimpeza(int id, String campo, Object novoValor) {
 
         String sql;
 
         boolean campoDasTabelas = campo.equals("nome") || campo.equals("preco") || campo.equals("quantidade") || campo.equals("data_fabricacao") || campo.equals("fabricante");
 
         if (campoDasTabelas) {
-            sql = "UPDATE produto SET " + campo + " WHERE id = ?";
+            sql = "UPDATE produto SET " + campo + " = ? WHERE id = ?";
         }
         else {
-            sql = "UPDATE produto_limpeza SET " + campo + " WHERE id = ?";
+            sql = "UPDATE produto_limpeza SET " + campo + " = ? WHERE id = ?";
         }
 
         try (Connection conn = Conexao.getConexao();
         PreparedStatement ps = conn.prepareStatement(sql)){
 
-            ps.setObject(1, novoDado);
+            ps.setObject(1, novoValor);
             ps.setInt(2, id);
 
             int linhasAfetadas = ps.executeUpdate();

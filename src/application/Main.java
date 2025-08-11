@@ -117,8 +117,8 @@ public class Main {
                         }
                         break;
                         case 4: {
+                            char repeticaoAlterarDadosProdELetronico = 'S';
                             try {
-                                char repeticaoAlterarDadosProdELetronico = 'S';
                                 do {
                                     System.out.println("Alterar as informações selecionada!");
                                     System.out.println("Informe o ID do produto que deseja modificar");
@@ -346,140 +346,148 @@ public class Main {
                         }
                         break;
                         case 4: {
+                            char repeticaoAlterarDadosProdLimpeza = 'S';
                             try {
-                                System.out.println("Alterar dados de um produto selecionado!");
-                                System.out.println("Informe o ID do produto que deseja ser alterado os dados");
-                                System.out.print("ID: ");
-                                int idProdLimpeza = Integer.parseInt(sc.nextLine());
-
-                                System.out.print("Você deseja alterar todas as informações ou apenas uma em especifíca?: (T/E): ");
-                                char opcaoAlterarInfo = sc.next().charAt(0);
-                                sc.nextLine();
-
-                                if (opcaoAlterarInfo == 'T' || opcaoAlterarInfo == 't') {
-                                    System.out.println("Opção de alterar todos os dados selecionado!");
-                                    System.out.println("Informe os dados abaixo para que sejam alterados no sistema");
-                                    System.out.print("Nome: ");
-                                    String novoNome = sc.nextLine();
-
-                                    System.out.print("Preço: ");
-                                    double novoPreco = Double.parseDouble(sc.nextLine());
-
-                                    System.out.print("Quantidade: ");
-                                    int novaQuantidade = Integer.parseInt(sc.nextLine());
-
-                                    System.out.print("Data de fabricação (dd/MM/yyyy): ");
-                                    String dataString = sc.nextLine();
-                                    Date utilDate = sdf.parse(dataString);
-                                    java.sql.Date novaDataFabricacao = new java.sql.Date(utilDate.getTime());
-
-                                    System.out.print("Fabricante: ");
-                                    String novoFabricante = sc.nextLine();
-
-                                    System.out.print("Fragrância: ");
-                                    String novaFragrancia = sc.nextLine();
-
-                                    System.out.print("Volume em ML: ");
-                                    int novoVolumeMl = Integer.parseInt(sc.nextLine());
-
-                                    System.out.print("Uso recomendado:");
-                                    String novoUso = sc.nextLine();
-
-                                    ProdutoLimpezaDAO prodLimpDAO = new ProdutoLimpezaDAO();
-                                    prodLimpDAO.alterarTodosDadosProdutoLimpeza(idProdLimpeza, novoNome, novoPreco, novaQuantidade, novaDataFabricacao, novoFabricante, novaFragrancia, novoVolumeMl, novoUso);
-                                }
-                                else if (opcaoAlterarInfo == 'E' || opcaoAlterarInfo == 'e') {
-                                    System.out.println("Alteração de um dado específico selecionado!");
-
-                                    System.out.println("Informe qual campo deseja alterar o dado já existente");
-                                    System.out.println("1 - Para alterar o nome");
-                                    System.out.println("2 - Para alterar o preço");
-                                    System.out.println("3 - Para alterar a quantidade");
-                                    System.out.println("4 - Para alterar a data de fabricação");
-                                    System.out.println("5 - Para alterar o fabricante");
-                                    System.out.println("6 - Para alterar a fragrância");
-                                    System.out.println("7 - Para alterar o volume em ML");
-                                    System.out.println("8 - Para alterar o uso recomendado");
-
-                                    System.out.print("Opção: ");
-                                    int opEscolhaAlterarDado = sc.nextInt();
+                                do {
+                                    System.out.println("Alterar dados de um produto selecionado!");
+                                    System.out.println("Informe o ID do produto que deseja ser alterado os dados");
+                                    System.out.print("ID: ");
+                                    int idProdLimpeza = sc.nextInt();
                                     sc.nextLine();
 
-                                    String campo = "";
-                                    Object novoValor = null;
+                                    System.out.print("Você deseja alterar todas as informações ou apenas uma em especifíca?: (T/E): ");
+                                    char opcaoAlterarInfo = sc.next().charAt(0);
+                                    sc.nextLine();
 
-                                    switch (opEscolhaAlterarDado) {
-                                        case 1: {
-                                            campo = "nome";
+                                    if (opcaoAlterarInfo == 'T' || opcaoAlterarInfo == 't') {
+                                        System.out.println("Opção de alterar todos os dados selecionado!");
+                                        System.out.println("Informe os dados abaixo para que sejam alterados no sistema");
+                                        System.out.print("Nome: ");
+                                        String novoNome = sc.nextLine();
 
-                                            System.out.println("Insira o novo  nome");
-                                            System.out.print("Nome: ");
-                                            novoValor = sc.nextLine();
+                                        System.out.print("Preço: ");
+                                        double novoPreco = Double.parseDouble(sc.nextLine());
+
+                                        System.out.print("Quantidade: ");
+                                        int novaQuantidade = Integer.parseInt(sc.nextLine());
+
+                                        System.out.print("Data de fabricação (dd/MM/yyyy): ");
+                                        String dataString = sc.nextLine();
+                                        Date utilDate = sdf.parse(dataString);
+                                        java.sql.Date novaDataFabricacao = new java.sql.Date(utilDate.getTime());
+
+                                        System.out.print("Fabricante: ");
+                                        String novoFabricante = sc.nextLine();
+
+                                        System.out.print("Fragrância: ");
+                                        String novaFragrancia = sc.nextLine();
+
+                                        System.out.print("Volume em ML: ");
+                                        int novoVolumeMl = Integer.parseInt(sc.nextLine());
+
+                                        System.out.print("Uso recomendado:");
+                                        String novoUso = sc.nextLine();
+
+                                        ProdutoLimpezaDAO prodLimpDAO = new ProdutoLimpezaDAO();
+                                        prodLimpDAO.alterarTodosDadosProdutoLimpeza(idProdLimpeza, novoNome, novoPreco, novaQuantidade, novaDataFabricacao, novoFabricante, novaFragrancia, novoVolumeMl, novoUso);
+                                    } else if (opcaoAlterarInfo == 'E' || opcaoAlterarInfo == 'e') {
+                                        System.out.println("Alteração de um dado específico selecionado!");
+
+                                        System.out.println("Informe qual campo deseja alterar o dado já existente");
+                                        System.out.println("1 - Para alterar o nome");
+                                        System.out.println("2 - Para alterar o preço");
+                                        System.out.println("3 - Para alterar a quantidade");
+                                        System.out.println("4 - Para alterar a data de fabricação");
+                                        System.out.println("5 - Para alterar o fabricante");
+                                        System.out.println("6 - Para alterar a fragrância");
+                                        System.out.println("7 - Para alterar o volume em ML");
+                                        System.out.println("8 - Para alterar o uso recomendado");
+
+                                        System.out.print("Opção: ");
+                                        int opEscolhaAlterarDado = sc.nextInt();
+                                        sc.nextLine();
+
+                                        String campo = "";
+                                        Object novoValor = null;
+
+                                        switch (opEscolhaAlterarDado) {
+                                            case 1: {
+                                                campo = "nome";
+
+                                                System.out.println("Insira o novo  nome");
+                                                System.out.print("Nome: ");
+                                                novoValor = sc.nextLine();
+                                            }
+                                            break;
+                                            case 2: {
+                                                campo = "preco";
+
+                                                System.out.println("Insira o novo preço");
+                                                System.out.print("Preço: ");
+                                                novoValor = Double.parseDouble(sc.nextLine());
+                                            }
+                                            break;
+
+                                            case 3: {
+                                                campo = "quantidade";
+
+                                                System.out.println("Informe a nova quantidade:");
+                                                System.out.print("QUantidade: ");
+                                                novoValor = Integer.parseInt(sc.nextLine());
+                                            }
+                                            break;
+                                            case 4: {
+                                                campo = "data_fabricacao";
+
+                                                System.out.println("Informe a nova data de fabricação");
+                                                System.out.print("Data de fabricação: (dd/MM/yyyy): ");
+                                                String dataFabricacao = sc.nextLine();
+                                                Date utilDate = sdf.parse(dataFabricacao);
+                                                java.sql.Date novaDataFabricacao = new java.sql.Date(utilDate.getTime());
+                                                novoValor = novaDataFabricacao;
+                                            }
+                                            break;
+                                            case 5: {
+                                                campo = "fabricante";
+
+                                                System.out.println("Informe a nova fabricante: ");
+                                                System.out.print("Fabricante: ");
+                                                novoValor = sc.nextLine();
+                                            }
+                                            break;
+                                            case 6: {
+                                                campo = "fragrancia";
+
+                                                System.out.println("Informe a nova fragância");
+                                                System.out.print("Fragrância: ");
+                                                novoValor = sc.nextLine();
+                                            }
+                                            break;
+                                            case 7: {
+                                                campo = "volume_ml";
+
+                                                System.out.println("Informe o novo volume em ML");
+                                                System.out.print("Volume em ML: ");
+                                                novoValor = Integer.parseInt(sc.nextLine());
+                                            }
+                                            break;
+                                            case 8: {
+                                                campo = "uso";
+
+                                                System.out.println("Informe o novo tipo de uso");
+                                                System.out.print("Uso: ");
+                                                novoValor = sc.nextLine();
+                                            }
+                                            break;
                                         }
-                                        break;
-                                        case 2: {
-                                            campo = "preco";
-
-                                            System.out.println("Insira o novo preço");
-                                            System.out.print("Preço: ");
-                                            novoValor = Double.parseDouble(sc.nextLine());
-                                        }
-                                        break;
-                                        case 3: {
-                                            campo = "quantidade";
-
-                                            System.out.println("Informe a nova quantidade:");
-                                            System.out.print("QUantidade: ");
-                                            novoValor = Integer.parseInt(sc.nextLine());
-                                        }
-                                        break;
-                                        case 4: {
-                                            campo = "data_fabricacao";
-
-                                            System.out.println("Informe a nova data de fabricação");
-                                            System.out.print("Data de fabricação: (dd/MM/yyyy): ");
-                                            String dataFabricacao = sc.nextLine();
-                                            Date utilDate = sdf.parse(dataFabricacao);
-                                            java.sql.Date novaDataFabricacao= new java.sql.Date(utilDate.getTime());
-                                            novoValor = novaDataFabricacao;
-                                        }
-                                        break;
-                                        case 5: {
-                                            campo = "fabricante";
-
-                                            System.out.println("Informe a nova fabricante: ");
-                                            System.out.print("Fabricante: ");
-                                            novoValor = sc.nextLine();
-                                        }
-                                        break;
-                                        case 6: {
-                                            campo = "fragrancia";
-
-                                            System.out.println("Informe a nova fragância");
-                                            System.out.print("Fragrância: ");
-                                            novoValor = sc.nextLine();
-                                        }
-                                        break;
-                                        case 7: {
-                                            campo = "volume_ml";
-
-                                            System.out.println("Informe o novo volume em ML");
-                                            System.out.print("Volume em ML: ");
-                                            novoValor = Integer.parseInt(sc.nextLine());
-                                        }
-                                        break;
-                                        case 8: {
-                                            campo = "uso";
-
-                                            System.out.println("Informe o novo tipo de uso");
-                                            System.out.print("Uso: ");
-                                            novoValor = sc.nextLine();
-                                        }
-                                        break;
+                                        ProdutoLimpezaDAO prodLimpDAO = new ProdutoLimpezaDAO();
+                                        prodLimpDAO.alterarDadosEspecificosProdutoLimpeza(idProdLimpeza, campo, novoValor);
                                     }
-                                    ProdutoLimpezaDAO prodLimpDAO = new ProdutoLimpezaDAO();
-                                    prodLimpDAO.alterarDadosEspecificosProdutoLimpeza(idProdLimpeza, campo, novoValor);
+                                    System.out.println("Deseja alterar mais dados de um produto de limpeza? (S/N): ");
+                                    repeticaoAlterarDadosProdLimpeza = sc.next().charAt(0);
+                                    System.out.print("Opção: ");
                                 }
+                                while (repeticaoAlterarDadosProdLimpeza == 'S' || repeticaoAlterarDadosProdLimpeza == 's');
                             }
                             catch (ParseException e) {
                                 throw new DataFormatoIncorretoException(e.getMessage());
