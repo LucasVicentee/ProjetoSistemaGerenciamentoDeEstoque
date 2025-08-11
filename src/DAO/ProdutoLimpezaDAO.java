@@ -166,4 +166,8 @@ public class ProdutoLimpezaDAO {
             e.getMessage();
         }
     }
+
+    public void alterarDadosEspecificosProdutoLimpeza(int id, String campo, Object novoDado) {
+
+    }
 }
