@@ -131,7 +131,7 @@ public class ProdutoLimpezaDAO {
         }
     }
 
-    public void alterarDadosEspecificosProdutoLimpeza(int id, String novoNome, double novoPreco, int novaQuantidade, Date novaDataFabricacao, String novoFabricante, String novaFragrancia, int novoVolumeMl, String novoUso) {
+    public void alterarTodosDadosProdutoLimpeza(int id, String novoNome, double novoPreco, int novaQuantidade, Date novaDataFabricacao, String novoFabricante, String novaFragrancia, int novoVolumeMl, String novoUso) {
 
         String sqlNovosDadosProduto = "UPDATE produto SET nome = ?, preco = ?, quantidade = ?, data_fabricacao = ?, fabricante = ? WHERE id = ?";
         String sqlNovosDadosProdutoLimpeza = "UPDATE produto_limpeza SET fragrancia = ?, volume_ml = ?, uso = ? WHERE id = ?";

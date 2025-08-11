@@ -126,7 +126,7 @@ public class ProdutoPerecivelDAO {
         }
     }
 
-    public void alterarDadosEspecificosProdutoPerecivel(int id, String novoNome, double novoPreco, int novaQuantidade, Date novaDataFabricacao, String novoFabricante, Date novaDataVencimento, String novoTipoProduto, double novoPesoGramas, String novaTemperaturaArmazenamento) {
+    public void alterarTodosDadosProdutoPerecivel(int id, String novoNome, double novoPreco, int novaQuantidade, Date novaDataFabricacao, String novoFabricante, Date novaDataVencimento, String novoTipoProduto, double novoPesoGramas, String novaTemperaturaArmazenamento) {
 
         String sqlAlterarDadosProduto = "UPDATE produto SET nome = ?, preco = ?, quantidade = ?, data_fabricacao = ?, fabricante = ? WHERE id = ?";
         String sqlAlterarDadosProdutoPerecivel = "UPDATE produto_perecivel SET data_vencimento = ?, tipo_produto = ?, peso_gramas = ?, temperatura_armazenamento = ? WHERE id = ?";

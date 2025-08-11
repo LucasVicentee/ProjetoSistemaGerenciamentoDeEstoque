@@ -155,7 +155,7 @@ public class Main {
                                     String novaVoltagem = sc.nextLine();
 
                                     ProdutoEletronicoDAO prodEletroDAO = new ProdutoEletronicoDAO();
-                                    prodEletroDAO.alterarDadosEspecificosProdutoEletronico(idProdEletronico, novoNome, novoPreco, novaQuantidade, novaDataFabricacao, novoFabricante, novaGarantiaMeses, novaVoltagem);
+                                    prodEletroDAO.alterarTodosDadosProdutoEletronico(idProdEletronico, novoNome, novoPreco, novaQuantidade, novaDataFabricacao, novoFabricante, novaGarantiaMeses, novaVoltagem);
                                 }
                                 else if (opcaoAlterarInfo == 'E' || opcaoAlterarInfo == 'e'){
                                     System.out.println("Alteração de um dado específico selecionado!");
@@ -291,7 +291,7 @@ public class Main {
                                     String novoUso = sc.nextLine();
 
                                     ProdutoLimpezaDAO prodLimpDAO = new ProdutoLimpezaDAO();
-                                    prodLimpDAO.alterarDadosEspecificosProdutoLimpeza(idProdLimpeza, novoNome, novoPreco, novaQuantidade, novaDataFabricacao, novoFabricante, novaFragrancia, novoVolumeMl, novoUso);
+                                    prodLimpDAO.alterarTodosDadosProdutoLimpeza(idProdLimpeza, novoNome, novoPreco, novaQuantidade, novaDataFabricacao, novoFabricante, novaFragrancia, novoVolumeMl, novoUso);
                                 }
                                 else if (opcaoAlterarInfo == 'E' || opcaoAlterarInfo == 'e') {
                                     System.out.println("Alteração de um dado específico selecionado!");
@@ -439,7 +439,7 @@ public class Main {
                                     String novaTemperaturaArmazenamento = sc.nextLine();
 
                                     ProdutoPerecivelDAO prodPereciDAO = new ProdutoPerecivelDAO();
-                                    prodPereciDAO.alterarDadosEspecificosProdutoPerecivel(idProdPerecivel, novoNome, novoPreco, novaQuantidade, novaDataFabricacao, novoFabricante,novaDataVencimento, novoTipoProduto, novoPesoGramas, novaTemperaturaArmazenamento);
+                                    prodPereciDAO.alterarTodosDadosProdutoPerecivel(idProdPerecivel, novoNome, novoPreco, novaQuantidade, novaDataFabricacao, novoFabricante,novaDataVencimento, novoTipoProduto, novoPesoGramas, novaTemperaturaArmazenamento);
                                 }
                                 else if (opcaoAlterarInfo == 'E' || opcaoAlterarInfo == 'e') {
                                     System.out.println("Alteração de um dado específico selecionado!");
