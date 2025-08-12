@@ -251,6 +251,9 @@ public class Main {
                                                 novoValor = Integer.parseInt(sc.nextLine());
                                             }
                                             break;
+                                            default: {
+                                                System.out.println("Opção inválida!");
+                                            }
                                         }
                                         ProdutoEletronicoDAO prodEletroDAO = new ProdutoEletronicoDAO();
                                         prodEletroDAO.alterarDadosEspecificosProdutoEletronico(idProdEletronico, campo, novoValor);
@@ -267,6 +270,9 @@ public class Main {
                             }
                         }
                         break;
+                        default: {
+                            System.out.println("Opção inválida!");
+                        }
                     }
                 }
                 break;
@@ -483,6 +489,9 @@ public class Main {
                                                 novoValor = sc.nextLine();
                                             }
                                             break;
+                                            default: {
+                                                System.out.println("Opção inválida!");
+                                            }
                                         }
                                         ProdutoLimpezaDAO prodLimpDAO = new ProdutoLimpezaDAO();
                                         prodLimpDAO.alterarDadosEspecificosProdutoLimpeza(idProdLimpeza, campo, novoValor);
@@ -499,6 +508,9 @@ public class Main {
                             }
                         }
                         break;
+                        default: {
+                            System.out.println("Opção inválida!");
+                        }
                     }
                 }
                 break;
@@ -759,7 +771,15 @@ public class Main {
                                 throw new DataFormatoIncorretoException(e.getMessage());
                             }
                         }
+                        break;
+                        default: {
+                            System.out.println("Opção inválida!");
+                        }
                     }
+                }
+                break;
+                default: {
+                    System.out.println("opção inválida!");
                 }
             }
             System.out.println("Deseja continuar no menu de interação? (S/N): ");
