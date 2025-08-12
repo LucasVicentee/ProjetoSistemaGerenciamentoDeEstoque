@@ -637,8 +637,35 @@ public class Main {
                                 }
                                 else if (opcaoAlterarInfo == 'E' || opcaoAlterarInfo == 'e') {
                                     System.out.println("Alteração de um dado específico selecionado!");
-                                    System.out.println("Informe o ID do produto que deseja alterar os dados");
-                                    System.out.print("ID: ");
+
+                                    System.out.println("Informe qual campo deseja alterar o dado já existente");
+                                    System.out.println("1 - Para alterar o nome");
+                                    System.out.println("2 - Para alterar o preço");
+                                    System.out.println("3 - Para alterar a quantidade");
+                                    System.out.println("4 - Para alterar a data de fabricação");
+                                    System.out.println("5 - Para alterar o fabricante");
+                                    System.out.println("6 - Para alterar a data de fabricação");
+                                    System.out.println("7 - Para alterar o tipo de produto");
+                                    System.out.println("8 - Para alterar o peso em gramas");
+                                    System.out.println("9 - Para alterar a temperatura de armazenamento");
+
+                                    System.out.print("Opção: ");
+                                    int opEscolhaAlterarDado = sc.nextInt();
+                                    sc.nextLine();
+
+                                    String campo = "";
+                                    Object novoValor = null;
+
+                                    switch (opEscolhaAlterarDado) {
+                                        case 1: {
+                                            campo = "nome";
+
+                                            System.out.println("Informe o novo nome");
+                                            System.out.print("Nome: ");
+                                            novoValor = sc.nextLine();
+                                        }
+                                        break;
+                                    }
                                 }
                             }
                             catch (ParseException e) {
