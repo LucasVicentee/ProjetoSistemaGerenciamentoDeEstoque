@@ -665,6 +665,79 @@ public class Main {
                                             novoValor = sc.nextLine();
                                         }
                                         break;
+                                        case 2: {
+                                            campo = "preco";
+
+                                            System.out.println("Informe o noo preço");
+                                            System.out.print("Preço: ");
+                                            novoValor = Double.parseDouble(sc.nextLine());
+                                        }
+                                        break;
+                                        case 3: {
+                                            campo = "quantidade";
+
+                                            System.out.println("Informe a nova quantidade");
+                                            System.out.print("Quantiade: ");
+                                            novoValor = Integer.parseInt(sc.nextLine());
+                                        }
+                                        break;
+                                        case 4: {
+                                            campo = "data_fabricacao";
+
+                                            System.out.println("Informe a nova data de fabricação");
+                                            System.out.print("Data de fabricação (dd/MM/yyyy): ");
+                                            String novaData = sc.nextLine();
+                                            Date utilDate = sdf.parse(novaData);
+                                            java.sql.Date novaDataFabricacao = new java.sql.Date(utilDate.getTime());
+                                            novoValor = novaDataFabricacao;
+                                        }
+                                        break;
+                                        case 5: {
+                                            campo = "fabricante";
+
+                                            System.out.println("informe a nova fabricante");
+                                            System.out.print("Fabricante: ");
+                                            novoValor = sc.nextLine();
+                                        }
+                                        break;
+                                        case 6: {
+                                            campo = "data_vencimento";
+
+                                            System.out.println("Informe a nova data de vencimento");
+                                            System.out.print("Data de vencimento (dd/MM/yyyy): ");
+                                            String novaData = sc.nextLine();
+                                            Date utilDate = sdf.parse(novaData);
+                                            java.sql.Date novaDataVencimento = new java.sql.Date(utilDate.getTime());
+                                            novoValor = novaDataVencimento;
+                                        }
+                                        break;
+                                        case 7: {
+                                            campo = "tipo_produto";
+
+                                            System.out.println("Informe o novo tipo de produto");
+                                            System.out.print("Tipo do produto: ");
+                                            novoValor = sc.nextLine();
+                                        }
+                                        break;
+                                        case 8: {
+                                            campo = "peso_gramas";
+
+                                            System.out.println("Informe o novo peso em gramas");
+                                            System.out.print("Peso em gramas: ");
+                                            novoValor = Integer.parseInt(sc.nextLine());
+                                        }
+                                        break;
+                                        case 9: {
+                                            campo = "temperatura_armazenamento";
+
+                                            System.out.println("Informe a nova temperatura de armazenamento");
+                                            System.out.print("Temperatura de armazenamento: ");
+                                            novoValor = sc.nextLine();
+                                        }
+                                        break;
+                                        default: {
+                                            System.out.println("Opção inválida!");
+                                        }
                                     }
                                 }
                             }
