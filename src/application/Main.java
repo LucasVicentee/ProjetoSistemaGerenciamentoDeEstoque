@@ -587,159 +587,168 @@ public class Main {
                         }
                         break;
                         case 4: {
+                            char repeticaoAlterarDadosProdPerecivel = 'S';
                             try {
-                                System.out.println("Alteração dos dados de um produto selecionado!");
-                                System.out.println("Informe o ID do produto que deseja alterar os dados");
-                                System.out.print("ID: ");
-                                int idProdPerecivel = Integer.parseInt(sc.nextLine());
+                                do {
+                                    System.out.println("Alteração dos dados de um produto selecionado!");
+                                    System.out.println("Informe o ID do produto que deseja alterar os dados");
+                                    System.out.print("ID: ");
+                                    int idProdPerecivel = Integer.parseInt(sc.nextLine());
 
-                                System.out.print("Você deseja alterar todos os dados ou um em específico? (T/E): ");
-                                char opcaoAlterarInfo = sc.next().charAt(0);
-                                sc.nextLine();
-
-                                if (opcaoAlterarInfo == 'T' || opcaoAlterarInfo == 't') {
-                                    System.out.println("Opção de alterar todos os dados selecionado!");
-                                    System.out.println("Informe os dados abaixo para que sejam alterados no sistema");
-
-                                    System.out.print("Nome: ");
-                                    String novoNome = sc.nextLine();
-
-                                    System.out.print("Preço: ");
-                                    double novoPreco = Double.parseDouble(sc.nextLine());
-
-                                    System.out.print("Quantidade: ");
-                                    int novaQuantidade = Integer.parseInt(sc.nextLine());
-
-                                    System.out.print("Data de fabricação (dd/MM/yyyy): ");
-                                    String novaDataFabri = sc.nextLine();
-                                    Date utilDateFabri = sdf.parse(novaDataFabri);
-                                    java.sql.Date novaDataFabricacao = new java.sql.Date(utilDateFabri.getTime());
-
-                                    System.out.print("Fabricante: ");
-                                    String novoFabricante = sc.nextLine();
-
-                                    System.out.print("Data de vencimento (dd/MM/yyyy): ");
-                                    String novaDataVenci = sc.nextLine();
-                                    Date utilDateVenci = sdf.parse(novaDataVenci);
-                                    java.sql.Date novaDataVencimento = new java.sql.Date(utilDateVenci.getTime());
-
-                                    System.out.print("Tipo do produto: ");
-                                    String novoTipoProduto = sc.nextLine();
-
-                                    System.out.print("Peso em gramas: ");
-                                    double novoPesoGramas = Double.parseDouble(sc.nextLine());
-
-                                    System.out.print("Temperatura de armazenamento: ");
-                                    String novaTemperaturaArmazenamento = sc.nextLine();
-
-                                    ProdutoPerecivelDAO prodPereciDAO = new ProdutoPerecivelDAO();
-                                    prodPereciDAO.alterarTodosDadosProdutoPerecivel(idProdPerecivel, novoNome, novoPreco, novaQuantidade, novaDataFabricacao, novoFabricante,novaDataVencimento, novoTipoProduto, novoPesoGramas, novaTemperaturaArmazenamento);
-                                }
-                                else if (opcaoAlterarInfo == 'E' || opcaoAlterarInfo == 'e') {
-                                    System.out.println("Alteração de um dado específico selecionado!");
-
-                                    System.out.println("Informe qual campo deseja alterar o dado já existente");
-                                    System.out.println("1 - Para alterar o nome");
-                                    System.out.println("2 - Para alterar o preço");
-                                    System.out.println("3 - Para alterar a quantidade");
-                                    System.out.println("4 - Para alterar a data de fabricação");
-                                    System.out.println("5 - Para alterar o fabricante");
-                                    System.out.println("6 - Para alterar a data de fabricação");
-                                    System.out.println("7 - Para alterar o tipo de produto");
-                                    System.out.println("8 - Para alterar o peso em gramas");
-                                    System.out.println("9 - Para alterar a temperatura de armazenamento");
-
-                                    System.out.print("Opção: ");
-                                    int opEscolhaAlterarDado = sc.nextInt();
+                                    System.out.print("Você deseja alterar todos os dados ou um em específico? (T/E): ");
+                                    char opcaoAlterarInfo = sc.next().charAt(0);
                                     sc.nextLine();
 
-                                    String campo = "";
-                                    Object novoValor = null;
+                                    if (opcaoAlterarInfo == 'T' || opcaoAlterarInfo == 't') {
+                                        System.out.println("Opção de alterar todos os dados selecionado!");
+                                        System.out.println("Informe os dados abaixo para que sejam alterados no sistema");
 
-                                    switch (opEscolhaAlterarDado) {
-                                        case 1: {
-                                            campo = "nome";
+                                        System.out.print("Nome: ");
+                                        String novoNome = sc.nextLine();
 
-                                            System.out.println("Informe o novo nome");
-                                            System.out.print("Nome: ");
-                                            novoValor = sc.nextLine();
-                                        }
-                                        break;
-                                        case 2: {
-                                            campo = "preco";
+                                        System.out.print("Preço: ");
+                                        double novoPreco = Double.parseDouble(sc.nextLine());
 
-                                            System.out.println("Informe o noo preço");
-                                            System.out.print("Preço: ");
-                                            novoValor = Double.parseDouble(sc.nextLine());
-                                        }
-                                        break;
-                                        case 3: {
-                                            campo = "quantidade";
+                                        System.out.print("Quantidade: ");
+                                        int novaQuantidade = Integer.parseInt(sc.nextLine());
 
-                                            System.out.println("Informe a nova quantidade");
-                                            System.out.print("Quantiade: ");
-                                            novoValor = Integer.parseInt(sc.nextLine());
-                                        }
-                                        break;
-                                        case 4: {
-                                            campo = "data_fabricacao";
+                                        System.out.print("Data de fabricação (dd/MM/yyyy): ");
+                                        String novaDataFabri = sc.nextLine();
+                                        Date utilDateFabri = sdf.parse(novaDataFabri);
+                                        java.sql.Date novaDataFabricacao = new java.sql.Date(utilDateFabri.getTime());
 
-                                            System.out.println("Informe a nova data de fabricação");
-                                            System.out.print("Data de fabricação (dd/MM/yyyy): ");
-                                            String novaData = sc.nextLine();
-                                            Date utilDate = sdf.parse(novaData);
-                                            java.sql.Date novaDataFabricacao = new java.sql.Date(utilDate.getTime());
-                                            novoValor = novaDataFabricacao;
-                                        }
-                                        break;
-                                        case 5: {
-                                            campo = "fabricante";
+                                        System.out.print("Fabricante: ");
+                                        String novoFabricante = sc.nextLine();
 
-                                            System.out.println("informe a nova fabricante");
-                                            System.out.print("Fabricante: ");
-                                            novoValor = sc.nextLine();
-                                        }
-                                        break;
-                                        case 6: {
-                                            campo = "data_vencimento";
+                                        System.out.print("Data de vencimento (dd/MM/yyyy): ");
+                                        String novaDataVenci = sc.nextLine();
+                                        Date utilDateVenci = sdf.parse(novaDataVenci);
+                                        java.sql.Date novaDataVencimento = new java.sql.Date(utilDateVenci.getTime());
 
-                                            System.out.println("Informe a nova data de vencimento");
-                                            System.out.print("Data de vencimento (dd/MM/yyyy): ");
-                                            String novaData = sc.nextLine();
-                                            Date utilDate = sdf.parse(novaData);
-                                            java.sql.Date novaDataVencimento = new java.sql.Date(utilDate.getTime());
-                                            novoValor = novaDataVencimento;
-                                        }
-                                        break;
-                                        case 7: {
-                                            campo = "tipo_produto";
+                                        System.out.print("Tipo do produto: ");
+                                        String novoTipoProduto = sc.nextLine();
 
-                                            System.out.println("Informe o novo tipo de produto");
-                                            System.out.print("Tipo do produto: ");
-                                            novoValor = sc.nextLine();
-                                        }
-                                        break;
-                                        case 8: {
-                                            campo = "peso_gramas";
+                                        System.out.print("Peso em gramas: ");
+                                        double novoPesoGramas = Double.parseDouble(sc.nextLine());
 
-                                            System.out.println("Informe o novo peso em gramas");
-                                            System.out.print("Peso em gramas: ");
-                                            novoValor = Integer.parseInt(sc.nextLine());
-                                        }
-                                        break;
-                                        case 9: {
-                                            campo = "temperatura_armazenamento";
+                                        System.out.print("Temperatura de armazenamento: ");
+                                        String novaTemperaturaArmazenamento = sc.nextLine();
 
-                                            System.out.println("Informe a nova temperatura de armazenamento");
-                                            System.out.print("Temperatura de armazenamento: ");
-                                            novoValor = sc.nextLine();
+                                        ProdutoPerecivelDAO prodPereciDAO = new ProdutoPerecivelDAO();
+                                        prodPereciDAO.alterarTodosDadosProdutoPerecivel(idProdPerecivel, novoNome, novoPreco, novaQuantidade, novaDataFabricacao, novoFabricante, novaDataVencimento, novoTipoProduto, novoPesoGramas, novaTemperaturaArmazenamento);
+                                    } else if (opcaoAlterarInfo == 'E' || opcaoAlterarInfo == 'e') {
+                                        System.out.println("Alteração de um dado específico selecionado!");
+
+                                        System.out.println("Informe qual campo deseja alterar o dado já existente");
+                                        System.out.println("1 - Para alterar o nome");
+                                        System.out.println("2 - Para alterar o preço");
+                                        System.out.println("3 - Para alterar a quantidade");
+                                        System.out.println("4 - Para alterar a data de fabricação");
+                                        System.out.println("5 - Para alterar o fabricante");
+                                        System.out.println("6 - Para alterar a data de fabricação");
+                                        System.out.println("7 - Para alterar o tipo de produto");
+                                        System.out.println("8 - Para alterar o peso em gramas");
+                                        System.out.println("9 - Para alterar a temperatura de armazenamento");
+
+                                        System.out.print("Opção: ");
+                                        int opEscolhaAlterarDado = sc.nextInt();
+                                        sc.nextLine();
+
+                                        String campo = "";
+                                        Object novoValor = null;
+
+                                        switch (opEscolhaAlterarDado) {
+                                            case 1: {
+                                                campo = "nome";
+
+                                                System.out.println("Informe o novo nome");
+                                                System.out.print("Nome: ");
+                                                novoValor = sc.nextLine();
+                                            }
+                                            break;
+                                            case 2: {
+                                                campo = "preco";
+
+                                                System.out.println("Informe o noo preço");
+                                                System.out.print("Preço: ");
+                                                novoValor = Double.parseDouble(sc.nextLine());
+                                            }
+                                            break;
+                                            case 3: {
+                                                campo = "quantidade";
+
+                                                System.out.println("Informe a nova quantidade");
+                                                System.out.print("Quantiade: ");
+                                                novoValor = Integer.parseInt(sc.nextLine());
+                                            }
+                                            break;
+                                            case 4: {
+                                                campo = "data_fabricacao";
+
+                                                System.out.println("Informe a nova data de fabricação");
+                                                System.out.print("Data de fabricação (dd/MM/yyyy): ");
+                                                String novaData = sc.nextLine();
+                                                Date utilDate = sdf.parse(novaData);
+                                                java.sql.Date novaDataFabricacao = new java.sql.Date(utilDate.getTime());
+                                                novoValor = novaDataFabricacao;
+                                            }
+                                            break;
+                                            case 5: {
+                                                campo = "fabricante";
+
+                                                System.out.println("informe a nova fabricante");
+                                                System.out.print("Fabricante: ");
+                                                novoValor = sc.nextLine();
+                                            }
+                                            break;
+                                            case 6: {
+                                                campo = "data_vencimento";
+
+                                                System.out.println("Informe a nova data de vencimento");
+                                                System.out.print("Data de vencimento (dd/MM/yyyy): ");
+                                                String novaData = sc.nextLine();
+                                                Date utilDate = sdf.parse(novaData);
+                                                java.sql.Date novaDataVencimento = new java.sql.Date(utilDate.getTime());
+                                                novoValor = novaDataVencimento;
+                                            }
+                                            break;
+                                            case 7: {
+                                                campo = "tipo_produto";
+
+                                                System.out.println("Informe o novo tipo de produto");
+                                                System.out.print("Tipo do produto: ");
+                                                novoValor = sc.nextLine();
+                                            }
+                                            break;
+                                            case 8: {
+                                                campo = "peso_gramas";
+
+                                                System.out.println("Informe o novo peso em gramas");
+                                                System.out.print("Peso em gramas: ");
+                                                novoValor = Integer.parseInt(sc.nextLine());
+                                            }
+                                            break;
+                                            case 9: {
+                                                campo = "temperatura_armazenamento";
+
+                                                System.out.println("Informe a nova temperatura de armazenamento");
+                                                System.out.print("Temperatura de armazenamento: ");
+                                                novoValor = sc.nextLine();
+                                            }
+                                            break;
+                                            default: {
+                                                System.out.println("Opção inválida!");
+                                            }
+                                            ProdutoPerecivelDAO prodPereciDAO = new ProdutoPerecivelDAO();
+                                            prodPereciDAO.alterarDadosEspecificosProdutoPerecivel(idProdPerecivel, campo, novoValor);
                                         }
-                                        break;
-                                        default: {
-                                            System.out.println("Opção inválida!");
-                                        }
+                                        System.out.println("Deseja alterar mais dados de um produto perecível? (S/N): ");
+                                        System.out.print("Opção: ");
+                                        repeticaoAlterarDadosProdPerecivel = sc.next().charAt(0);
                                     }
                                 }
+                                while (repeticaoAlterarDadosProdPerecivel == 'S' || repeticaoAlterarDadosProdPerecivel == 's');
+                                System.out.println("Saindo...");
                             }
                             catch (ParseException e) {
                                 throw new DataFormatoIncorretoException(e.getMessage());
