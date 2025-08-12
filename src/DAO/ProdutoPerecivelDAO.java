@@ -183,6 +183,13 @@ public class ProdutoPerecivelDAO {
             ps.setInt(2, id);
 
             int linhasAfetadas = ps.executeUpdate();
+
+            if (linhasAfetadas == 0) {
+                throw new ProdutoNaoEncontradoException(id);
+            }
+            else {
+                System.out.println("Dados atualizados com sucesso!");
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
