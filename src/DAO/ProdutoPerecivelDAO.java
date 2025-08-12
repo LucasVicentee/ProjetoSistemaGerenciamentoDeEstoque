@@ -163,35 +163,35 @@ public class ProdutoPerecivelDAO {
         }
     }
 
-    public void alterarDadosEspecificosProdutoPerecivel(int id, String campo, Object novoValor) {
+        public void alterarDadosEspecificosProdutoPerecivel(int id, String campo, Object novoValor) {
 
-        String sql;
+            String sql;
 
-        boolean campoDasTabelas = campo.equals("nome") || campo.equals("preco") ||campo.equals("quantidade") || campo.equals("data_fabricacao") || campo.equals("fabricante");
+            boolean campoDasTabelas = campo.equals("nome") || campo.equals("preco") ||campo.equals("quantidade") || campo.equals("data_fabricacao") || campo.equals("fabricante");
 
-        if (campoDasTabelas) {
-            sql = "UPDATE produto SET " + campo + " = ? WHERE id = ?";
-        }
-        else {
-            sql = "UPDATE produto_perecivel SET " + campo + " = ? WHERE id = ?";
-        }
-
-        try (Connection conn = Conexao.getConexao();
-        PreparedStatement ps = conn.prepareStatement(sql)){
-
-            ps.setObject(1, novoValor);
-            ps.setInt(2, id);
-
-            int linhasAfetadas = ps.executeUpdate();
-
-            if (linhasAfetadas == 0) {
-                throw new ProdutoNaoEncontradoException(id);
+            if (campoDasTabelas) {
+                sql = "UPDATE produto SET " + campo + " = ? WHERE id = ?";
             }
             else {
-                System.out.println("Dados atualizados com sucesso!");
+                sql = "UPDATE produto_perecivel SET " + campo + " = ? WHERE id = ?";
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+
+            try (Connection conn = Conexao.getConexao();
+            PreparedStatement ps = conn.prepareStatement(sql)){
+
+                ps.setObject(1, novoValor);
+                ps.setInt(2, id);
+
+                int linhasAfetadas = ps.executeUpdate();
+
+                if (linhasAfetadas == 0) {
+                    throw new ProdutoNaoEncontradoException(id);
+                }
+                else {
+                    System.out.println("Dados atualizados com sucesso!");
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
-    }
 }

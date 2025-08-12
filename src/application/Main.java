@@ -159,7 +159,8 @@ public class Main {
 
                                         ProdutoEletronicoDAO prodEletroDAO = new ProdutoEletronicoDAO();
                                         prodEletroDAO.alterarTodosDadosProdutoEletronico(idProdEletronico, novoNome, novoPreco, novaQuantidade, novaDataFabricacao, novoFabricante, novaGarantiaMeses, novaVoltagem);
-                                    } else if (opcaoAlterarInfo == 'E' || opcaoAlterarInfo == 'e') {
+                                    }
+                                    else if (opcaoAlterarInfo == 'E' || opcaoAlterarInfo == 'e') {
                                         System.out.println("Alteração de um dado específico selecionado!");
 
                                         System.out.println("Informe qual campo deseja alterar o dado já existente");
@@ -392,7 +393,8 @@ public class Main {
 
                                         ProdutoLimpezaDAO prodLimpDAO = new ProdutoLimpezaDAO();
                                         prodLimpDAO.alterarTodosDadosProdutoLimpeza(idProdLimpeza, novoNome, novoPreco, novaQuantidade, novaDataFabricacao, novoFabricante, novaFragrancia, novoVolumeMl, novoUso);
-                                    } else if (opcaoAlterarInfo == 'E' || opcaoAlterarInfo == 'e') {
+                                    }
+                                    else if (opcaoAlterarInfo == 'E' || opcaoAlterarInfo == 'e') {
                                         System.out.println("Alteração de um dado específico selecionado!");
 
                                         System.out.println("Informe qual campo deseja alterar o dado já existente");
@@ -593,7 +595,8 @@ public class Main {
                                     System.out.println("Alteração dos dados de um produto selecionado!");
                                     System.out.println("Informe o ID do produto que deseja alterar os dados");
                                     System.out.print("ID: ");
-                                    int idProdPerecivel = Integer.parseInt(sc.nextLine());
+                                    int idProdPerecivel = sc.nextInt();
+                                    sc.nextLine();
 
                                     System.out.print("Você deseja alterar todos os dados ou um em específico? (T/E): ");
                                     char opcaoAlterarInfo = sc.next().charAt(0);
@@ -636,7 +639,8 @@ public class Main {
 
                                         ProdutoPerecivelDAO prodPereciDAO = new ProdutoPerecivelDAO();
                                         prodPereciDAO.alterarTodosDadosProdutoPerecivel(idProdPerecivel, novoNome, novoPreco, novaQuantidade, novaDataFabricacao, novoFabricante, novaDataVencimento, novoTipoProduto, novoPesoGramas, novaTemperaturaArmazenamento);
-                                    } else if (opcaoAlterarInfo == 'E' || opcaoAlterarInfo == 'e') {
+                                    }
+                                    else if (opcaoAlterarInfo == 'E' || opcaoAlterarInfo == 'e') {
                                         System.out.println("Alteração de um dado específico selecionado!");
 
                                         System.out.println("Informe qual campo deseja alterar o dado já existente");
@@ -739,9 +743,10 @@ public class Main {
                                             default: {
                                                 System.out.println("Opção inválida!");
                                             }
-                                            ProdutoPerecivelDAO prodPereciDAO = new ProdutoPerecivelDAO();
-                                            prodPereciDAO.alterarDadosEspecificosProdutoPerecivel(idProdPerecivel, campo, novoValor);
                                         }
+                                        ProdutoPerecivelDAO prodPereciDAO = new ProdutoPerecivelDAO();
+                                        prodPereciDAO.alterarDadosEspecificosProdutoPerecivel(idProdPerecivel, campo, novoValor);
+
                                         System.out.println("Deseja alterar mais dados de um produto perecível? (S/N): ");
                                         System.out.print("Opção: ");
                                         repeticaoAlterarDadosProdPerecivel = sc.next().charAt(0);
