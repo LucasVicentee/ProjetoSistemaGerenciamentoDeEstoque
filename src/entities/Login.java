@@ -3,7 +3,7 @@ package entities;
 public class Login {
 
     private int id;
-    private String nome;
+    private String usuario;
     private String email;
     private String senha;
 
@@ -11,15 +11,15 @@ public class Login {
 
     }
 
-    public Login(int id, String nome, String email, String senha) {
+    public Login(int id, String usuario, String email, String senha) {
         this.id = id;
-        this.nome = nome;
+        this.usuario = usuario;
         this.email = email;
         this.senha = senha;
     }
 
-    public Login(String nome, String email, String senha) {
-        this.nome = nome;
+    public Login(String usuario, String email, String senha) {
+        this.usuario = usuario;
         this.email = email;
         this.senha = senha;
     }
@@ -32,12 +32,12 @@ public class Login {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNome(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getEmail() {
