@@ -5,23 +5,26 @@ public class Login {
     private int id;
     private String usuario;
     private String email;
-    private String senha;
+    private String senha_hash;
+    private String salt;
 
     public Login() {
 
     }
 
-    public Login(int id, String usuario, String email, String senha) {
+    public Login(int id, String usuario, String email, String senha_hash, String salt) {
         this.id = id;
         this.usuario = usuario;
         this.email = email;
-        this.senha = senha;
+        this.senha_hash = senha_hash;
+        this.salt = salt;
     }
 
-    public Login(String usuario, String email, String senha) {
+    public Login(String usuario, String email, String senha_hash, String salt) {
         this.usuario = usuario;
         this.email = email;
-        this.senha = senha;
+        this.senha_hash = senha_hash;
+        this.salt = salt;
     }
 
     public int getId() {
@@ -48,11 +51,19 @@ public class Login {
         this.email = email;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getSenha_hash() {
+        return senha_hash;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setSenha_hash(String senha_hash) {
+        this.senha_hash = senha_hash;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 }

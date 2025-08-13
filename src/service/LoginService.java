@@ -9,12 +9,12 @@ public class LoginService {
     private LoginDAO loginDAO = new LoginDAO();
 
     // Cadastro de usuário
-    public void cadastrarUsuario(String nome, String email, String senha) {
+    public void cadastrarUsuario(String nome, String email, String senha_hash) {
 
         Login usuario = new Login();
         usuario.setNome(nome);
         usuario.setEmail(email);
-        usuario.setSenha(senha);
+        usuario.setSenha_hash(senha_hash);
         loginDAO.cadastrarUsuario(usuario);
     }
 

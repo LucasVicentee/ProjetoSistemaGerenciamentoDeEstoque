@@ -14,13 +14,13 @@ public class LoginDAO {
 
     // Inserir usuário no banco
     public void cadastrarUsuario(Login usuario) {
-        String sql = "INSERT INTO login (usuario, email, senha, salt) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO login (usuario, email, senha_hash, salt) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = Conexao.getConexao();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             byte[] salt = SenhaUtils.gerarSalt();
-            String senhaHash = SenhaUtils.gerarHash(usuario.getSenha(), salt);
+            String senhaHash = SenhaUtils.gerarHash(usuario.getSenha_hash(), salt);
             String saltBase64 = Base64.getEncoder().encodeToString(salt);
 
             ps.setString(1, usuario.getUsuario());
@@ -47,7 +47,7 @@ public class LoginDAO {
 
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                String senhaHashBanco = rs.getString("senha");
+                String senhaHashBanco = rs.getString("senha_hash");
                 String saltBase64 = rs.getString("salt");
                 byte[] salt = Base64.getDecoder().decode(saltBase64);
 

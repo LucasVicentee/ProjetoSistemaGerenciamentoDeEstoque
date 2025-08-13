@@ -32,7 +32,7 @@ public class Main {
             System.out.println("Selecione a opção desejada");
             System.out.println("1 - Para cadastrar-se no sistema");
             System.out.println("2 - Para efetuar o login");
-            System.out.println("3 - Para sair do sistema");
+            System.out.println("0 - Para sair do sistema");
 
             System.out.print("Opção: ");
             int opcaoSistema = sc.nextInt();
@@ -77,7 +77,7 @@ public class Main {
                             System.out.println("Selecione o tipo de produto para interagir: ");
                             System.out.println("1 - Para produto Eletrônico");
                             System.out.println("2 - Para produto de Limpeza");
-                            System.out.println("0 - Para produto Perecível");
+                            System.out.println("3 - Para produto Perecível");
                             System.out.print("Opcão: ");
                             int opcao = sc.nextInt();
                             sc.nextLine();
