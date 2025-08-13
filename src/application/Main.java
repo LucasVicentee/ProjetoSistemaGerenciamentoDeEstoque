@@ -163,8 +163,8 @@ public class Main {
                                         }
                                         break;
                                         case 4: {
-                                            char repeticaoAlterarDadosProdELetronico = 'S';
                                             try {
+                                                char repeticaoAlterarDadosProdEletronico;
                                                 do {
                                                     System.out.println("Alterar as informações selecionada!");
                                                     System.out.println("Informe o ID do produto que deseja modificar");
@@ -205,7 +205,8 @@ public class Main {
 
                                                         ProdutoEletronicoDAO prodEletroDAO = new ProdutoEletronicoDAO();
                                                         prodEletroDAO.alterarTodosDadosProdutoEletronico(idProdEletronico, novoNome, novoPreco, novaQuantidade, novaDataFabricacao, novoFabricante, novaGarantiaMeses, novaVoltagem);
-                                                    } else if (opcaoAlterarInfo == 'E' || opcaoAlterarInfo == 'e') {
+                                                    }
+                                                    else if (opcaoAlterarInfo == 'E' || opcaoAlterarInfo == 'e') {
                                                         System.out.println("Alteração de um dado específico selecionado!");
 
                                                         System.out.println("Informe qual campo deseja alterar o dado já existente");
@@ -262,8 +263,7 @@ public class Main {
                                                                 System.out.print("Data de fabricação (dd/MM/yyyy): ");
                                                                 String novaData = sc.nextLine();
                                                                 Date utilDate = sdf.parse(novaData);
-                                                                java.sql.Date novaDataFormatada = new java.sql.Date(utilDate.getTime());
-                                                                novoValor = novaDataFormatada;
+                                                                novoValor = new java.sql.Date(utilDate.getTime());
                                                             }
                                                             break;
                                                             case 5: {
@@ -305,9 +305,9 @@ public class Main {
                                                     }
                                                     System.out.println("Deseja alterar mais dados de um produto eletrônico? (S/N): ");
                                                     System.out.print("Opção: ");
-                                                    char repeticaoAlterarDadosProdEletronico = sc.next().charAt(0);
+                                                    repeticaoAlterarDadosProdEletronico = sc.next().charAt(0);
                                                 }
-                                                while (repeticaoAlterarDadosProdELetronico == 'S' || repeticaoAlterarDadosProdELetronico == 's');
+                                                while (repeticaoAlterarDadosProdEletronico == 'S' || repeticaoAlterarDadosProdEletronico == 's');
                                                 System.out.println("Saindo...");
                                             } catch (ParseException e) {
                                                 throw new DataFormatoIncorretoException();
@@ -496,8 +496,7 @@ public class Main {
                                                                 System.out.print("Data de fabricação: (dd/MM/yyyy): ");
                                                                 String dataFabricacao = sc.nextLine();
                                                                 Date utilDate = sdf.parse(dataFabricacao);
-                                                                java.sql.Date novaDataFabricacao = new java.sql.Date(utilDate.getTime());
-                                                                novoValor = novaDataFabricacao;
+                                                                novoValor = new java.sql.Date(utilDate.getTime());
                                                             }
                                                             break;
                                                             case 5: {
@@ -743,8 +742,7 @@ public class Main {
                                                                 System.out.print("Data de fabricação (dd/MM/yyyy): ");
                                                                 String novaData = sc.nextLine();
                                                                 Date utilDate = sdf.parse(novaData);
-                                                                java.sql.Date novaDataFabricacao = new java.sql.Date(utilDate.getTime());
-                                                                novoValor = novaDataFabricacao;
+                                                                novoValor = new java.sql.Date(utilDate.getTime());
                                                             }
                                                             break;
                                                             case 5: {
@@ -762,8 +760,7 @@ public class Main {
                                                                 System.out.print("Data de vencimento (dd/MM/yyyy): ");
                                                                 String novaData = sc.nextLine();
                                                                 Date utilDate = sdf.parse(novaData);
-                                                                java.sql.Date novaDataVencimento = new java.sql.Date(utilDate.getTime());
-                                                                novoValor = novaDataVencimento;
+                                                                novoValor = new java.sql.Date(utilDate.getTime());
                                                             }
                                                             break;
                                                             case 7: {
