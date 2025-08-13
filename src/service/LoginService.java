@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class LoginService {
 
-    public Login verificarUsuarioOuEmail(String usuarioOuEmail) {
+    public Login verificarUsuarioOuEmail(String usuarioOuEmail, String senha) {
         String sql = "SELECT * FROM login WHERE usuario = ? OR email = ?";
 
         try (Connection conn = Conexao.getConexao();
@@ -20,13 +20,17 @@ public class LoginService {
             ps.setString(2, usuarioOuEmail);
 
             ResultSet rs = ps.executeQuery();
+
             if (rs.next()) {
-                Login login = new Login();
-                login.setId(rs.getInt("id"));
-                login.setNome(rs.getString("usuario"));
-                login.setEmail(rs.getString("email"));
-                login.setSenha(rs.getString("senha"));
-                return login;
+                String senhaDoBanco = rs.getString("senha");
+                if (senhaDoBanco.equals("senha")) {
+                    Login login = new Login();
+                    login.setId(rs.getInt("id"));
+                    login.setNome(rs.getString("usuario"));
+                    login.setEmail(rs.getString("email"));
+                    login.setSenha(senhaDoBanco);
+                    return login;
+                }
             }
             else {
                 return null;
