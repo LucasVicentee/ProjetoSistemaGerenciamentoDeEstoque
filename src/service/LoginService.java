@@ -23,7 +23,7 @@ public class LoginService {
             if (rs.next()) {
                 Login login = new Login();
                 login.setId(rs.getInt("id"));
-                login.setNome(rs.getNString("usuario"));
+                login.setNome(rs.getString("usuario"));
                 login.setEmail(rs.getString("email"));
                 login.setSenha(rs.getString("senha"));
                 return login;
