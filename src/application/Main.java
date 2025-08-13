@@ -77,7 +77,7 @@ public class Main {
                             System.out.println("Selecione o tipo de produto para interagir: ");
                             System.out.println("1 - Para produto Eletrônico");
                             System.out.println("2 - Para produto de Limpeza");
-                            System.out.println("3 - Para produto Perecível");
+                            System.out.println("0 - Para produto Perecível");
                             System.out.print("Opcão: ");
                             int opcao = sc.nextInt();
                             sc.nextLine();
@@ -821,16 +821,21 @@ public class Main {
                             repeticao = sc.next().charAt(0);
                         }
                         while (repeticao == 'S' || repeticao == 's');
-                        System.out.println("Obrigado!");
                     } else {
                         System.out.println("Usuário ou senha incorretos!");
                     }
+                }
+                break;
+                case 0: {
+                    System.out.println("Saindo do sistema...");
+                    System.exit(0);
                 }
             }
             System.out.println("Deseja tentar novamente o login? (S/N)");
             System.out.print("Opção: ");
             digitarNovamenteLogin = sc.next().charAt(0);
         }while (digitarNovamenteLogin == 'S' || digitarNovamenteLogin == 's') ;
+        System.out.println("Obrigado!");
         sc.close();
     }
 }
