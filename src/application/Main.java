@@ -51,7 +51,7 @@ public class Main {
                 String senha = sc.nextLine();
 
                 LoginService login = new LoginService();
-                login.verificarUsuarioOuEmail(usuarioOuEmail);
+                login.verificarUsuarioOuEmail(usuarioOuEmail, senha);
             }
         }
             char repeticao;
