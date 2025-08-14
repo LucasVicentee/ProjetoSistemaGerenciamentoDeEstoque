@@ -13,13 +13,13 @@ import java.util.Base64;
 public class LoginDAO {
 
     // Inserir usuário no banco
-    public void cadastrarUsuario(Login usuario) {
-        String sql = "INSERT INTO login (usuario, email, senha_hash, salt) VALUES (?, ?, ?, ?)";
+    public void cadastrarUsuario(Login usuario) { //Pega os dados que são inseridos pelos usuários que vão se cadastrar para o banco de dados
+        String sql = "INSERT INTO login (usuario, email, senha_hash, salt) VALUES (?, ?, ?, ?)"; //SQL se inserção dos dados dentro do banco
 
         try (Connection conn = Conexao.getConexao();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            byte[] salt = SenhaUtils.gerarSalt();
+            byte[] salt = SenhaUtils.gerarSalt(); //Chama o método de geração do salt que está no pacote utils dentro da classe SenhaUtils
             String senhaHash = SenhaUtils.gerarHash(usuario.getSenha_hash(), salt);
             String saltBase64 = Base64.getEncoder().encodeToString(salt);
 
@@ -28,7 +28,7 @@ public class LoginDAO {
             ps.setString(3, senhaHash);
             ps.setString(4, saltBase64);
 
-            ps.executeUpdate();
+            ps.executeUpdate(); //Atualiza os campos do banco com as informações passadas pelo usuário
 
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao cadastrar usuário: " + e.getMessage(), e);
