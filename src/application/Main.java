@@ -118,7 +118,7 @@ public class Main {
                                                 System.out.print("Voltagem do produto Eletrônico: ");
                                                 String voltagem = sc.nextLine();
 
-                                                //Chamada do método de inseção de dados da classe ProdutoEletronico
+                                                //Chamada do método de inserção de dados da classe ProdutoEletrônico
                                                 ProdutoEletronico pe = new ProdutoEletronico(nome, preco, quantidade, dataFabricacao, fabricante, garantiaMeses, voltagem);
 
                                                 ProdutoEletronicoDAO prodEletroDAO = new ProdutoEletronicoDAO(); //Chamada da classe DAO
